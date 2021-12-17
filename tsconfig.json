@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2019",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "baseUrl": "src",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "declaration": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "noEmitOnError": false,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "useUnknownInCatchVariables": false,
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "outDir": "app",
+    "rootDir": "src",
+    "lib": [
+      "dom",
+      "es2019"
+    ],
+    "typeRoots": [
+      "../../node_modules/@types",
+      "../../typings"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
