@@ -16,7 +16,7 @@ yarn run start
 
 ## 开发
 
-在根目录执行 `watch`。
+在项目根目录运行
 
 ```bash
 yarn run watch
