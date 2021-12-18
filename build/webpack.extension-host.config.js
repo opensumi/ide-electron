@@ -2,7 +2,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 
 const tsConfigPath = path.join(__dirname, '../tsconfig.json');
-const distDir = path.join(__dirname, '../app/extension')
+const distDir = path.join(__dirname, '../app/extension');
 
 const nodeTarget = {
   entry: path.join(__dirname, '../src/extension/index'), //require.resolve('@opensumi/ide-extension/lib/hosted/ext.process.js'),
@@ -15,24 +15,27 @@ const nodeTarget = {
   resolve: {
     extensions: ['.ts', '.tsx', '.mjs', '.js', '.json', '.less'],
     mainFields: ['main'],
-    plugins: [new TsconfigPathsPlugin({
-      configFile: tsConfigPath,
-    })],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: tsConfigPath,
+      }),
+    ],
   },
   mode: 'development',
   devtool: 'source-map',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
-    rules: [{
-      test: /\.tsx?$/,
-      loader: 'ts-loader',
-      options: {
-        configFile: tsConfigPath,
-      }
-    },
-    { test: /\.css$/, loader: require.resolve('null-loader') },
-    { test: /\.less$/, loader: require.resolve('null-loader') },
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          configFile: tsConfigPath,
+        },
+      },
+      { test: /\.css$/, loader: require.resolve('null-loader') },
+      { test: /\.less$/, loader: require.resolve('null-loader') },
     ],
   },
   externals: [
@@ -41,7 +44,7 @@ const nodeTarget = {
         return callback(null, 'commonjs ' + request);
       }
       callback();
-    }
+    },
   ],
   resolveLoader: {
     modules: [path.join(__dirname, '../node_modules')],
@@ -50,7 +53,6 @@ const nodeTarget = {
     moduleExtensions: ['-loader'],
   },
 };
-
 
 const workerTarget = {
   entry: path.join(__dirname, '../src/extension/index.worker'), //require.resolve('@opensumi/ide-extension/lib/hosted/ext.process.js'),
@@ -61,29 +63,32 @@ const workerTarget = {
   },
   node: {
     net: 'empty',
-    'tls': 'empty',
+    tls: 'empty',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.mjs', '.js', '.json', '.less'],
     mainFields: ['main'],
-    plugins: [new TsconfigPathsPlugin({
-      configFile: tsConfigPath,
-    })]
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: tsConfigPath,
+      }),
+    ],
   },
   mode: 'development',
   devtool: 'source-map',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
-    rules: [{
-      test: /\.tsx?$/,
-      loader: 'ts-loader',
-      options: {
-        configFile: tsConfigPath
-      }
-    },
-    { test: /\.css$/, loader: require.resolve('null-loader') },
-    { test: /\.less$/, loader: require.resolve('null-loader') },
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          configFile: tsConfigPath,
+        },
+      },
+      { test: /\.css$/, loader: require.resolve('null-loader') },
+      { test: /\.less$/, loader: require.resolve('null-loader') },
     ],
   },
   externals: [
@@ -92,7 +97,7 @@ const workerTarget = {
         return callback(null, 'commonjs ' + request);
       }
       callback();
-    }
+    },
   ],
   resolveLoader: {
     modules: [path.join(__dirname, '../node_modules')],
@@ -100,6 +105,6 @@ const workerTarget = {
     mainFields: ['loader', 'main'],
     moduleExtensions: ['-loader'],
   },
-}
+};
 
 module.exports = [nodeTarget, workerTarget];

@@ -1,10 +1,9 @@
-// tslint:disable:no-var-requires
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 const tsConfigPath = path.join(__dirname, '../tsconfig.json');
-const distDir = path.join(__dirname, '../app/webview')
+const distDir = path.join(__dirname, '../app/webview');
 
 module.exports = {
   entry: require.resolve('@opensumi/ide-webview/lib/electron-webview/host-preload.js'),
@@ -16,22 +15,25 @@ module.exports = {
   node: false,
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
-    plugins: [new TsconfigPathsPlugin({
-      configFile: tsConfigPath,
-    })]
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: tsConfigPath,
+      }),
+    ],
   },
   mode: 'development',
   devtool: 'eval',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
-    rules: [{
-      test: /\.tsx?$/,
-      loader: 'ts-loader',
-      options: {
-        configFile: tsConfigPath
-      }
-    },
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          configFile: tsConfigPath,
+        },
+      },
     ],
   },
   externals: [
@@ -40,7 +42,7 @@ module.exports = {
         return callback(null, 'commonjs ' + request);
       }
       callback();
-    }
+    },
   ],
   resolveLoader: {
     modules: [path.join(__dirname, '../node_modules')],
@@ -50,7 +52,10 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin([
-      { from: require.resolve('@opensumi/ide-webview/lib/electron-webview/plain-preload.js'), to: path.join(distDir, 'plain-preload.js') },
+      {
+        from: require.resolve('@opensumi/ide-webview/lib/electron-webview/plain-preload.js'),
+        to: path.join(distDir, 'plain-preload.js'),
+      },
     ]),
-  ]
+  ],
 };

@@ -1,4 +1,3 @@
-// tslint:disable:no-var-requires
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -7,7 +6,7 @@ const path = require('path');
 
 const tsConfigPath = path.join(__dirname, '../tsconfig.json');
 const srcDir = path.join(__dirname, '../src/browser');
-const distDir = path.join(__dirname, '../app/browser')
+const distDir = path.join(__dirname, '../app/browser');
 
 module.exports = {
   entry: path.join(srcDir, './index.ts'),
@@ -26,84 +25,92 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.mjs', '.js', '.json', '.less'],
-    plugins: [new TsconfigPathsPlugin({
-      configFile: tsConfigPath,
-    })],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: tsConfigPath,
+      }),
+    ],
   },
   mode: 'development',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
-    rules: [{
-      test: /\.tsx?$/,
-      loader: 'ts-loader',
-      options: {
-        configFile: tsConfigPath
-      }
-    },
-    {
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: 'javascript/auto',
-    },
-    {
-      test: /\.png$/,
-      use: 'file-loader',
-    },
-    {
-      test: /\.css$/,
-      use: [MiniCssExtractPlugin.loader, 'css-loader'],
-    },
-    {
-      test: /\.module.less$/,
-      use: [{
-        loader: 'style-loader'
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          configFile: tsConfigPath,
+        },
       },
       {
-        loader: 'css-loader',
-        options: {
-          sourceMap: true,
-          modules: true,
-          localIdentName: '[local]___[hash:base64:5]'
-        }
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
       },
       {
-        loader: 'less-loader',
-        options: {
-          lessOptions: {
-            javascriptEnabled: true
-          }
-        }
-      }
-      ]
-    },
-    {
-      test: /^((?!\.module).)*less$/,
-      use: [{
-        loader: 'style-loader'
+        test: /\.png$/,
+        use: 'file-loader',
       },
       {
-        loader: 'css-loader',
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        loader: 'less-loader',
-        options: {
-          lessOptions: {
-            javascriptEnabled: true
-          }
-        }
-      }]
-    },
-    {
-      test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'fonts/'
-        }
-      }]
-    }
+        test: /\.module.less$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true,
+              localIdentName: '[local]___[hash:base64:5]',
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /^((?!\.module).)*less$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
+      },
     ],
   },
   resolveLoader: {
@@ -123,7 +130,10 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: path.join(srcDir, './vendor'), to: distDir },
-      { from: require.resolve('@opensumi/ide-core-electron-main/browser-preload/index.js'), to: path.join(distDir, 'preload.js') },
+      {
+        from: require.resolve('@opensumi/ide-core-electron-main/browser-preload/index.js'),
+        to: path.join(distDir, 'preload.js'),
+      },
     ]),
   ],
 };

@@ -1,4 +1,3 @@
-console.time('Render');
 import { ClientApp, IClientAppOpts, electronEnv, URI } from '@opensumi/ide-core-browser';
 import { Injector, Domain } from '@opensumi/di';
 import { createSocketConnection } from '@opensumi/ide-connection';
@@ -32,7 +31,6 @@ export async function renderApp(arg1: IClientAppOpts | Domain, arg2: Domain[] = 
     opts.extWorkerHost = URI.file(electronEnv.metadata.workerHostEntry).toString();
   }
   opts.didRendered = () => {
-    console.timeEnd('Render');
     const loadingDom = document.getElementById('loading');
     if (loadingDom) {
       loadingDom.classList.add('loading-hidden');

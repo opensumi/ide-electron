@@ -8,8 +8,8 @@ fs.copyFileSync(path.join(__dirname, '../build/package.json'), path.join(__dirna
 
 electronBuilder.build({
   config: {
-    productName: 'Kaitian IDE',
-    npmArgs: ['--registry=https://registry.npm.alibaba-inc.com'],
+    productName: 'OpenSumi Desktop',
+    npmArgs: ['--registry=https://registry.npm.taobao.org'],
     electronVersion: rootPackage.devDependencies.electron, // 根据前置 package.json 判断版本号即可
     extraResources: [
       {
@@ -22,7 +22,7 @@ electronBuilder.build({
       output: path.join(__dirname, '../out/'),
     },
     asar: true,
-    asarUnpack: 'node_modules/@ali/vscode-ripgrep',
+    asarUnpack: 'node_modules/vscode-ripgrep',
     mac: {
       target: 'dmg',
     },

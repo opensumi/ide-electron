@@ -7,7 +7,6 @@ if (!(window as any).process) {
 import '@opensumi/ide-i18n';
 import { ElectronBasicModule } from '@opensumi/ide-electron-basic/lib/browser';
 import { renderApp } from './app';
-import { StartupModule } from '@opensumi/ide-startup/lib/browser';
 
 import { MainLayoutModule } from '@opensumi/ide-main-layout/lib/browser';
 import { MenuBarModule } from '@opensumi/ide-menu-bar/lib/browser';
@@ -36,9 +35,6 @@ import { StorageModule } from '@opensumi/ide-storage/lib/browser';
 import { SCMModule } from '@opensumi/ide-scm/lib/browser';
 
 import { MarkersModule } from '@opensumi/ide-markers/lib/browser';
-
-// import { Terminal2Module } from '@opensumi/ide-terminal2/lib/browser';
-
 import { WebviewModule } from '@opensumi/ide-webview';
 import { MarkdownModule } from '@opensumi/ide-markdown';
 
@@ -59,7 +55,6 @@ import { ClientAddonModule } from '@opensumi/ide-addons/lib/browser';
 import { TaskModule } from '@opensumi/ide-task/lib/browser';
 import { customLayoutConfig } from './layout';
 import { DemoModule } from 'modules/demo';
-import { TopbarModule } from 'modules/topbar/browser';
 
 export const CommonBrowserModules: ConstructorOf<BrowserModule>[] = [
   MainLayoutModule,
@@ -79,7 +74,6 @@ export const CommonBrowserModules: ConstructorOf<BrowserModule>[] = [
   OutputModule,
   QuickOpenModule,
   MarkersModule,
-
   ThemeModule,
   WorkspaceModule,
   ExtensionStorageModule,
@@ -97,27 +91,15 @@ export const CommonBrowserModules: ConstructorOf<BrowserModule>[] = [
   VariableModule,
   KeymapsModule,
   TerminalNextModule,
-
-  // Extension Modules
   ExtensionModule,
-  // FeatureExtensionModule,
   OpenVsxExtensionManagerModule,
   MonacoEnhanceModule,
-
-  // addons
   ClientAddonModule,
   CommentsModule,
   TaskModule,
 ];
 
-
 renderApp({
-  modules: [
-    ...CommonBrowserModules,
-    ElectronBasicModule,
-    StartupModule,
-    DemoModule,
-    // TopbarModule, // Topbar demo
-  ],
+  modules: [...CommonBrowserModules, ElectronBasicModule, DemoModule],
   layoutConfig: customLayoutConfig,
 });
