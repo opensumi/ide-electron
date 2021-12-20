@@ -33,7 +33,7 @@ jobs:
           prerelease: true
           files: |
             LICENSE
-            dist/*.dmg
+            out/*.dmg
 
       - name: ✅
         if: ${{ success() }}

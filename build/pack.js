@@ -9,7 +9,7 @@ fs.copyFileSync(path.join(__dirname, '../build/package.json'), path.join(__dirna
 electronBuilder.build({
   publish: null,
   config: {
-    productName: 'OpenSumi Desktop',
+    productName: 'OpenSumi-Desktop',
     npmArgs: ['--registry=https://registry.npm.taobao.org'],
     electronVersion: rootPackage.devDependencies.electron, // 根据前置 package.json 判断版本号即可
     extraResources: [
