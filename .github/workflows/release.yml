@@ -35,12 +35,12 @@ jobs:
             LICENSE
             dist/*.dmg
 
-      - name: Release ✅
+      - name: ✅
         if: ${{ success() }}
         run: |
           echo 执行成功
 
-      - name: Release 🚨
+      - name: 🚨
         if: ${{ failure() }}
         run: |
           echo 执行失败

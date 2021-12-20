@@ -7,6 +7,7 @@ const rootPackage = require('../package.json');
 fs.copyFileSync(path.join(__dirname, '../build/package.json'), path.join(__dirname, '../app/package.json'));
 
 electronBuilder.build({
+  publish: null,
   config: {
     productName: 'OpenSumi Desktop',
     npmArgs: ['--registry=https://registry.npm.taobao.org'],
