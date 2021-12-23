@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -26,6 +27,9 @@ jobs:
           npm i
           npm run rebuild-native
           npm run pack
+        env:
+          TARGET_PLATFORMS: darwin,win32
+
 
       - uses: 'marvinpinto/action-automatic-releases@latest'
         with:
@@ -34,6 +38,7 @@ jobs:
           files: |
             LICENSE
             out/*.dmg
+            out/*.exe
 
       - name: ✅
         if: ${{ success() }}
