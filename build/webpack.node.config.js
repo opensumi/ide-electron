@@ -12,7 +12,6 @@ module.exports = {
     filename: 'index.js',
     path: distDir,
   },
-  node: false,
   resolve: {
     extensions: ['.ts', '.tsx', '.mjs', '.js', '.json', '.less'],
     mainFields: ['main'],
@@ -34,6 +33,11 @@ module.exports = {
         options: {
           configFile: tsConfigPath,
         },
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
       },
     ],
   },

@@ -34,6 +34,11 @@ const nodeTarget = {
           configFile: tsConfigPath,
         },
       },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+      },
       { test: /\.css$/, loader: require.resolve('null-loader') },
       { test: /\.less$/, loader: require.resolve('null-loader') },
     ],
@@ -86,6 +91,11 @@ const workerTarget = {
         options: {
           configFile: tsConfigPath,
         },
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
       },
       { test: /\.css$/, loader: require.resolve('null-loader') },
       { test: /\.less$/, loader: require.resolve('null-loader') },
