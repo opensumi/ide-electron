@@ -44,5 +44,12 @@ electronBuilder.build({
     mac: {
       target: 'dmg',
     },
+    win: {
+      artifactName: '${productName}-${version}.${ext}',
+      target: [{
+        target: 'nsis',
+        arch: ['x64'],
+      }],
+    },
   }
 })

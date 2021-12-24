@@ -123,17 +123,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(srcDir, '/index.html'),
     }),
-
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash:8].css',
       chunkFilename: '[id].css',
     }),
-    new CopyPlugin([
-      { from: path.join(srcDir, './vendor'), to: distDir },
-      {
-        from: require.resolve('@opensumi/ide-core-electron-main/browser-preload/index.js'),
-        to: path.join(distDir, 'preload.js'),
-      },
-    ]),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: require.resolve('@opensumi/ide-core-electron-main/browser-preload/index.js'),
+          to: path.join(distDir, 'preload.js'),
+        },
+      ]
+    }),
   ],
 };

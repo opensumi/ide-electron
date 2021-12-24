@@ -51,11 +51,13 @@ module.exports = {
     moduleExtensions: ['-loader'],
   },
   plugins: [
-    new CopyPlugin([
-      {
-        from: require.resolve('@opensumi/ide-webview/lib/electron-webview/plain-preload.js'),
-        to: path.join(distDir, 'plain-preload.js'),
-      },
-    ]),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: require.resolve('@opensumi/ide-webview/lib/electron-webview/plain-preload.js'),
+          to: path.join(distDir, 'plain-preload.js'),
+        },
+      ]
+    }),
   ],
 };
