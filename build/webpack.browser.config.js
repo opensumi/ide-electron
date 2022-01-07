@@ -32,6 +32,7 @@ module.exports = {
     ],
   },
   mode: 'development',
+  devtool: 'source-map',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
