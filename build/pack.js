@@ -5,7 +5,10 @@ const rootPackage = require('../package.json');
 
 const DEFAULT_TARGET_PLATFORM = 'darwin';
 
-// 使用双 package.json 结构，自动处理 node_modules
+// disable code sign
+process.env.CSC_IDENTITY_AUTO_DISCOVERY = false;
+
+// use double package.json structure, auto handle node_modules
 fs.copyFileSync(path.join(__dirname, '../build/package.json'), path.join(__dirname, '../app/package.json'));
 
 const targetPlatforms = (process.env.TARGET_PLATFORMS || DEFAULT_TARGET_PLATFORM).split(',').map((str) => str.trim());
@@ -26,8 +29,8 @@ electronBuilder.build({
   publish: null,
   targets: targets.size ? targets : undefined,
   config: {
-    productName: 'OpenSumi-Desktop',
-    npmArgs: ['--registry=https://registry.npm.taobao.org'],
+    productName: 'OpenSumi',
+    npmArgs: ['--registry=https://registry.npmmirror.com'],
     electronVersion: rootPackage.devDependencies.electron, // 根据前置 package.json 判断版本号即可
     extraResources: [
       {
@@ -40,12 +43,17 @@ electronBuilder.build({
       output: path.join(__dirname, '../out/'),
     },
     asar: true,
-    asarUnpack: 'node_modules/vscode-ripgrep',
+    asarUnpack: [
+      'node_modules/@opensumi/vscode-ripgrep',
+    ],
     mac: {
+      icon: 'build/icon/sumi.png',
+      artifactName: '${productName}-Desktop-${version}.${ext}',
       target: 'dmg',
     },
     win: {
-      artifactName: '${productName}-${version}.${ext}',
+      artifactName: '${productName}-Desktop-${version}.${ext}',
+      icon: 'build/icon/sumi.ico',
       target: [{
         target: 'nsis',
         arch: ['x64'],
