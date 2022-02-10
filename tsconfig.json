@@ -23,7 +23,6 @@
     "skipLibCheck": true,
     "useUnknownInCatchVariables": false,
     "isolatedModules": true,
-    "useDefineForClassFields": true,
     "outDir": "app",
     "rootDir": "src",
     "lib": [
