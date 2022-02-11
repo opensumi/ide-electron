@@ -37,7 +37,6 @@
   "license": "MIT",
   "dependencies": {},
   "resolutions": {
-    "urllib": "2.37.3",
     "requestretry": "6.0.0",
     "y18n": "4.0.0"
   },
@@ -93,6 +92,7 @@
     "@opensumi/ide-workspace": "^2.14.2",
     "@opensumi/ide-workspace-edit": "^2.14.2",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "await-event": "^2.1.0",
     "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^2.1.1",
     "electron": "13.6.2",
