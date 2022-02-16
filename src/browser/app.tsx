@@ -24,7 +24,9 @@ export async function renderApp(arg1: IClientAppOpts | Domain, arg2: Domain[] = 
     opts = arg1 as IClientAppOpts;
   }
 
-  opts.workspaceDir = electronEnv.env.WORKSPACE_DIR;
+  opts.workspaceDir = electronEnv.env.WORKSPACE_DIR || '/Users';
+  opts.wsPath = 'ws://127.0.0.1:8000'
+  opts.isRemote = true;
   opts.extensionDir = electronEnv.metadata.extensionDir;
   opts.injector = injector;
   if (electronEnv.metadata.workerHostEntry) {
@@ -45,7 +47,5 @@ export async function renderApp(arg1: IClientAppOpts | Domain, arg2: Domain[] = 
     injector.get(IElectronMainLifeCycleService).reloadWindow(electronEnv.currentWindowId);
   };
 
-  const netConnection = await (window as any).createRPCNetConnection();
-  app.start(document.getElementById('main')!, 'electron', createSocketConnection(netConnection));
-
+  app.start(document.getElementById('main')!, 'web');
 }
