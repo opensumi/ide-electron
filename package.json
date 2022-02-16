@@ -38,7 +38,7 @@
   "dependencies": {},
   "resolutions": {
     "requestretry": "6.0.0",
-    "y18n": "4.0.0"
+    "y18n": "5.0.5"
   },
   "devDependencies": {
     "@opensumi/di": "^1.1.0",
