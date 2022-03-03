@@ -3,10 +3,6 @@
   "version": "1.3.2",
   "main": "main/index.js",
   "description": "OpenSumi Desktop",
-  "scripts": {
-    "postinstall": "npm run rebuild-native",
-    "rebuild-native": "NATIVE_MODULE_PATH='../app' ts-node ../scripts/rebuild-native.js --target=electron --force-rebuild=true"
-  },
   "private": true,
   "dependencies": {
     "@opensumi/vscode-ripgrep": "^1.4.0",
