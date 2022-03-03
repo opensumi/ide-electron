@@ -1,8 +1,8 @@
+const os = require('os');
+const { join } = require('path');
 const { execSync } = require('child_process');
 const { pathExistsSync, copySync, removeSync } = require('fs-extra');
-const { join } = require('path');
 const argv = require('yargs').argv;
-
 
 const nativeModules = [
   join(__dirname, '../node_modules/node-pty'),
@@ -13,6 +13,7 @@ const nativeModules = [
 let commands;
 
 const target = argv.target || 'node';
+const arch = argv.arch || os.arch();
 let version;
 
 if (target === 'electron') {
@@ -21,7 +22,17 @@ if (target === 'electron') {
 
   console.log('rebuilding native for electron version ' + version);
 
-  commands = ['node-gyp', 'rebuild', `--target=${version}`, '--arch=x64', '--dist-url=https://electronjs.org/headers']
+  commands = [
+    os.platform() === 'win32'
+      ? 'set HOME=~/.electron-gyp'
+      : 'HOME=~/.electron-gyp',
+    'node-gyp',
+    'rebuild',
+    '--openssl_fips=X',
+    `--target=${version}`,
+    `--arch=${arch}`,
+    '--dist-url=https://electronjs.org/headers',
+  ];
 
 } else if (target === 'node') {
 

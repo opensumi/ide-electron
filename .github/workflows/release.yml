@@ -7,7 +7,40 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  windows-build:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        node_version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Package Electron
+        run: |
+          npm i
+          npm run rebuild-native
+          npm run pack
+        env:
+          TARGET_PLATFORMS: win32
+
+
+      - uses: 'marvinpinto/action-automatic-releases@latest'
+        with:
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          prerelease: true
+          files: |
+            LICENSE
+            out/*.dmg
+            out/*.exe
+
+  macos-build:
     runs-on: macos-latest
 
     strategy:
@@ -28,7 +61,7 @@ jobs:
           npm run rebuild-native
           npm run pack
         env:
-          TARGET_PLATFORMS: darwin,win32
+          TARGET_PLATFORMS: darwin
 
 
       - uses: 'marvinpinto/action-automatic-releases@latest'
@@ -39,13 +72,3 @@ jobs:
             LICENSE
             out/*.dmg
             out/*.exe
-
-      - name: ✅
-        if: ${{ success() }}
-        run: |
-          echo 执行成功
-
-      - name: 🚨
-        if: ${{ failure() }}
-        run: |
-          echo 执行失败
