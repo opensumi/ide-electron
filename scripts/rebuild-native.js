@@ -23,15 +23,15 @@ if (target === 'electron') {
   console.log('rebuilding native for electron version ' + version);
 
   commands = [
+    `npm_config_arch=${arch}`,
+    `npm_config_target_arch=${arch}`,
     os.platform() === 'win32'
       ? 'set HOME=~/.electron-gyp'
       : 'HOME=~/.electron-gyp',
-    'node-gyp',
-    'rebuild',
-    '--openssl_fips=X',
-    `--target=${version}`,
-    `--arch=${arch}`,
-    '--dist-url=https://electronjs.org/headers',
+
+    os.platform() === 'win32'
+      ? join(__dirname, '..\\node_modules\\.bin\\electron-rebuild.cmd')
+      : join(__dirname, '../node_modules/.bin/electron-rebuild'),
   ];
 
 } else if (target === 'node') {
@@ -44,7 +44,7 @@ if (target === 'electron') {
 
 }
 
-function rebuildModule (modulePath, type, version) {
+function rebuildModule(modulePath, type, version) {
   const info = require(join(modulePath, './package.json'));
   console.log('rebuilding ' + info.name)
   const cache = getBuildCacheDir(modulePath, type, version, target);
@@ -65,7 +65,7 @@ function rebuildModule (modulePath, type, version) {
 
 }
 
-function getBuildCacheDir (modulePath, type, version, target) {
+function getBuildCacheDir(modulePath, type, version, target) {
   const info = require(join(modulePath, './package.json'));
   return join(require('os').tmpdir(), 'ide_build_cache', target, info.name + '-' + info.version, type + '-' + version);
 }
