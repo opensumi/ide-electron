@@ -22,18 +22,19 @@ if (target === 'electron') {
 
   console.log('rebuilding native for electron version ' + version);
 
-  commands = [
-    `npm_config_arch=${arch}`,
-    `npm_config_target_arch=${arch}`,
-    os.platform() === 'win32'
-      ? 'set HOME=~/.electron-gyp'
-      : 'HOME=~/.electron-gyp',
-
-    os.platform() === 'win32'
-      ? join(__dirname, '..\\node_modules\\.bin\\electron-rebuild.cmd')
-      : join(__dirname, '../node_modules/.bin/electron-rebuild'),
-  ];
-
+  if (os.platform() === 'win32') {
+    commands = [
+      'set HOME=~/.electron-gyp',
+      join(__dirname, '..\\node_modules\\.bin\\electron-rebuild.cmd'),
+    ];
+  } else {
+    commands = [
+      `npm_config_arch=${arch}`,
+      `npm_config_target_arch=${arch}`,
+      'HOME=~/.electron-gyp',
+      join(__dirname, '../node_modules/.bin/electron-rebuild'),
+    ];
+  }
 } else if (target === 'node') {
 
   console.log('rebuilding native for node version ' + process.version);
@@ -62,7 +63,6 @@ function rebuildModule(modulePath, type, version) {
     removeSync(cache);
     copySync(join(modulePath, 'build'), cache);
   }
-
 }
 
 function getBuildCacheDir(modulePath, type, version, target) {
@@ -73,4 +73,4 @@ function getBuildCacheDir(modulePath, type, version, target) {
 
 nativeModules.forEach(path => {
   rebuildModule(path, target, version);
-})
+});
