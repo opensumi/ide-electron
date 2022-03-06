@@ -14,6 +14,7 @@ let commands;
 
 const target = argv.target || 'node';
 const arch = argv.arch || os.arch();
+const platform = os.platform();
 let version;
 
 if (target === 'electron') {
@@ -22,17 +23,27 @@ if (target === 'electron') {
 
   console.log('rebuilding native for electron version ' + version);
 
-  commands = [
-    `npm_config_arch=${arch}`,
-    `npm_config_target_arch=${arch}`,
-    os.platform() === 'win32'
-      ? 'set HOME=~/.electron-gyp'
-      : 'HOME=~/.electron-gyp',
-
-    os.platform() === 'win32'
-      ? join(__dirname, '..\\node_modules\\.bin\\electron-rebuild.cmd')
-      : join(__dirname, '../node_modules/.bin/electron-rebuild'),
-  ];
+  if (platform === 'win32') {
+    commands = [
+      'node-gyp',
+      'rebuild',
+      '--openssl_fips=X',
+      `--target=${version}`,
+      `--arch=${arch}`,
+      '--dist-url=https://electronjs.org/headers',
+    ]
+  } else {
+    commands = [
+      `npm_config_arch=${arch}`,
+      `npm_config_target_arch=${arch}`,
+      'node-gyp',
+      'rebuild',
+      '--openssl_fips=X',
+      `--target=${version}`,
+      `--arch=${arch}`,
+      '--dist-url=https://electronjs.org/headers',
+    ];
+  }
 
 } else if (target === 'node') {
 
