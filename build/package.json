@@ -1,6 +1,6 @@
 {
   "name": "opensumi-desktop",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "main": "main/index.js",
   "description": "OpenSumi Desktop",
   "private": true,
