@@ -39,10 +39,6 @@
         "version": "1.55.2"
       },
       {
-        "name": "debug-auto-launch",
-        "version": "1.55.2"
-      },
-      {
         "name": "docker",
         "version": "1.55.2"
       },
