@@ -1,5 +1,7 @@
 # OpenSumi IDE Electron 集成示例
 
+[中文文档](https://opensumi.com/zh/docs/integrate/quick-start/electron)
+
 ![OpenSumi Desktop](./snapshots/sumi-electron.png)
 
 ## 快速开始
