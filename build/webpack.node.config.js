@@ -1,11 +1,12 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
+const { createConfig } = require('./webpack.base.config');
 
 const tsConfigPath = path.join(__dirname, '../tsconfig.json');
 const srcDir = path.join(__dirname, '../src/node');
 const distDir = path.join(__dirname, '../app/node');
 
-module.exports = {
+module.exports = createConfig({
   entry: path.join(srcDir, './index.ts'),
   target: 'node',
   output: {
@@ -21,8 +22,6 @@ module.exports = {
       }),
     ],
   },
-  mode: 'development',
-  devtool: 'source-map',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
@@ -55,4 +54,4 @@ module.exports = {
     mainFields: ['loader', 'main'],
     moduleExtensions: ['-loader'],
   },
-};
+});

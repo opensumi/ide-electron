@@ -5,7 +5,9 @@ const tsConfigPath = path.join(__dirname, '../tsconfig.json');
 const srcDir = path.join(__dirname, '../src/main');
 const distDir = path.join(__dirname, '../app/main');
 
-module.exports = {
+const { createConfig } = require('./webpack.base.config');
+
+module.exports = createConfig({
   entry: path.join(srcDir, './index.ts'),
   target: 'electron-main',
   output: {
@@ -22,8 +24,6 @@ module.exports = {
       }),
     ],
   },
-  mode: 'development',
-  devtool: 'source-map',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
@@ -56,4 +56,4 @@ module.exports = {
     mainFields: ['loader', 'main'],
     moduleExtensions: ['-loader'],
   },
-};
+});

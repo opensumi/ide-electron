@@ -8,9 +8,9 @@ const tsConfigPath = path.join(__dirname, '../tsconfig.json');
 const srcDir = path.join(__dirname, '../src/browser');
 const distDir = path.join(__dirname, '../app/browser');
 
-console.log(process.env.NODE_ENV);
+const { createConfig } = require('./webpack.base.config');
 
-module.exports = {
+module.exports = createConfig({
   entry: path.join(srcDir, './index.ts'),
   node: {
     net: 'empty',
@@ -139,4 +139,4 @@ module.exports = {
       ],
     }),
   ],
-};
+});

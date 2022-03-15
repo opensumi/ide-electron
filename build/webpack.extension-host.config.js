@@ -1,11 +1,12 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
+const { createConfig } = require('./webpack.base.config');
 
 const tsConfigPath = path.join(__dirname, '../tsconfig.json');
 const distDir = path.join(__dirname, '../app/extension');
 
-const nodeTarget = {
-  entry: path.join(__dirname, '../src/extension/index'), //require.resolve('@opensumi/ide-extension/lib/hosted/ext.process.js'),
+const nodeTarget = createConfig({
+  entry: path.join(__dirname, '../src/extension/index'), // require.resolve('@opensumi/ide-extension/lib/hosted/ext.process.js'),
   target: 'node',
   output: {
     filename: 'index.js',
@@ -21,8 +22,6 @@ const nodeTarget = {
       }),
     ],
   },
-  mode: 'development',
-  devtool: 'source-map',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
@@ -57,10 +56,10 @@ const nodeTarget = {
     mainFields: ['loader', 'main'],
     moduleExtensions: ['-loader'],
   },
-};
+});
 
-const workerTarget = {
-  entry: path.join(__dirname, '../src/extension/index.worker'), //require.resolve('@opensumi/ide-extension/lib/hosted/ext.process.js'),
+const workerTarget = createConfig({
+  entry: path.join(__dirname, '../src/extension/index.worker'), // require.resolve('@opensumi/ide-extension/lib/hosted/ext.process.js'),
   target: 'webworker',
   output: {
     filename: 'index.worker.js',
@@ -79,8 +78,6 @@ const workerTarget = {
       }),
     ],
   },
-  mode: 'development',
-  devtool: 'source-map',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
@@ -115,6 +112,6 @@ const workerTarget = {
     mainFields: ['loader', 'main'],
     moduleExtensions: ['-loader'],
   },
-};
+});
 
 module.exports = [nodeTarget, workerTarget];
