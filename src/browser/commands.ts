@@ -1,4 +1,4 @@
-import { Autowired, Injectable, Injector, INJECTOR_TOKEN } from "@opensumi/di";
+import { Autowired, Injector, INJECTOR_TOKEN } from "@opensumi/di";
 import { electronEnv } from "@opensumi/ide-core-browser";
 import {
   Domain,
