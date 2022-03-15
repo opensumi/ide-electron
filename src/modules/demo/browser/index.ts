@@ -7,7 +7,6 @@ import { EditorEmptyComponentContribution } from './editor-empty-component.contr
 
 @Injectable()
 export class DemoModule extends ElectronBasicModule {
-
   providers = [
     {
       token: IHelloService,
@@ -15,5 +14,5 @@ export class DemoModule extends ElectronBasicModule {
     },
     // DemoContribution,
     EditorEmptyComponentContribution,
-  ]
+  ];
 }

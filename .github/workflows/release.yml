@@ -3,7 +3,7 @@ name: RELEASE
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -30,9 +30,9 @@ jobs:
         env:
           TARGET_PLATFORMS: darwin
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: 'marvinpinto/action-automatic-releases@latest'
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
           prerelease: true
           files: |
             LICENSE

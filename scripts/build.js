@@ -20,7 +20,6 @@ const buildByConfig = (configFile) => build({ configFile, mode });
     console.time(totalTimeLabel);
 
     for (const packageConfigPath of packagesConfigs) {
-
       const consoleGroupName = `${dirname(packageConfigPath)}/`;
       console.group(consoleGroupName);
 

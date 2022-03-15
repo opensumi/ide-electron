@@ -12,7 +12,7 @@ const getExtensionDir = () => {
     return join(appPath, './../extensions');
   }
   return join(appPath, './extensions'); // 相对于app的路径
-}
+};
 
 const electronApp = new ElectronMainApp({
   browserNodeIntegrated: true,

@@ -25,16 +25,7 @@
     "isolatedModules": true,
     "outDir": "app",
     "rootDir": "src",
-    "lib": [
-      "dom",
-      "es2019"
-    ],
-    "typeRoots": [
-      "../../node_modules/@types",
-      "../../typings"
-    ]
+    "lib": ["dom", "es2019"]
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

@@ -1,4 +1,3 @@
-
 // tslint:disable no-console
 import * as net from 'net';
 import * as yargs from 'yargs';

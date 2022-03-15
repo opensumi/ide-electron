@@ -1,12 +1,8 @@
-import { Autowired, Injector, INJECTOR_TOKEN } from "@opensumi/di";
-import { electronEnv } from "@opensumi/ide-core-browser";
-import {
-  Domain,
-  CommandContribution,
-  CommandRegistry,
-} from "@opensumi/ide-core-common";
-import { IMainLayoutService } from "@opensumi/ide-main-layout";
-import { ITerminalController } from "@opensumi/ide-terminal-next";
+import { Autowired, Injector, INJECTOR_TOKEN } from '@opensumi/di';
+import { electronEnv } from '@opensumi/ide-core-browser';
+import { Domain, CommandContribution, CommandRegistry } from '@opensumi/ide-core-common';
+import { IMainLayoutService } from '@opensumi/ide-main-layout';
+import { ITerminalController } from '@opensumi/ide-terminal-next';
 
 @Domain(CommandContribution)
 export class MainCommandContribution implements CommandContribution {
@@ -22,21 +18,21 @@ export class MainCommandContribution implements CommandContribution {
   registerCommands(registry: CommandRegistry): void {
     registry.registerCommand(
       {
-        id: "sumi.commandLineTool.install",
-        label: "install command line sumi",
+        id: 'sumi.commandLineTool.install',
+        label: 'install command line sumi',
       },
       {
         execute: async () => {
           if (this.terminalService.clients.size === 0) {
             await this.terminalService.createClientWithWidget2({
               terminalOptions: {
-                name: "install sumi",
-                cwd: "/usr/local/bin",
+                name: 'install sumi',
+                cwd: '/usr/local/bin',
               },
             });
           }
 
-          const handler = this.mainLayoutService.getTabbarHandler("terminal");
+          const handler = this.mainLayoutService.getTabbarHandler('terminal');
           if (handler) {
             handler.activate();
           }
@@ -50,7 +46,7 @@ export class MainCommandContribution implements CommandContribution {
             }
           }
         },
-      }
+      },
     );
   }
 }
