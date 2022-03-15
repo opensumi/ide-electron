@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
@@ -33,7 +34,6 @@ module.exports = createConfig({
         loader: 'ts-loader',
         options: {
           configFile: tsConfigPath,
-          transpileOnly: true,
         },
       },
       {
@@ -104,6 +104,14 @@ module.exports = createConfig({
           },
         ],
       },
+    ],
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.mjs', '.js', '.json', '.less'],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: tsConfigPath,
+      }),
     ],
   },
   resolveLoader: {

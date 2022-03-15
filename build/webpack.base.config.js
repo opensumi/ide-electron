@@ -1,5 +1,3 @@
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-
 /**
  * @param {import("webpack").Configuration} config
  * @returns
