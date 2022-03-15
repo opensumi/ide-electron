@@ -3,6 +3,7 @@ import { ElectronMainApp } from '@opensumi/ide-core-electron-main';
 import { isOSX, URI } from '@opensumi/ide-core-common';
 import { join } from 'path';
 import { MainModule } from './services';
+import { OpenSumiDesktopMainModule } from './module';
 import { WebviewElectronMainModule } from '@opensumi/ide-webview/lib/electron-main';
 import { existsSync, statSync } from 'fs';
 
@@ -24,7 +25,7 @@ if (isOSX) {
 const electronApp = new ElectronMainApp({
   browserNodeIntegrated: true,
   browserUrl: URI.file(join(__dirname, '../browser/index.html')).toString(),
-  modules: [MainModule, WebviewElectronMainModule],
+  modules: [MainModule, WebviewElectronMainModule, OpenSumiDesktopMainModule],
   nodeEntry: join(__dirname, '../node/index.js'),
   extensionEntry: join(__dirname, '../extension/index.js'),
   extensionWorkerEntry: join(__dirname, '../extension/index.worker.js'),

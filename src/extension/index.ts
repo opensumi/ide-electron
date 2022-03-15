@@ -1,6 +1,17 @@
 import { extProcessInit } from '@opensumi/ide-extension/lib/hosted/ext.process-base.js';
-import LogServiceClass from './mock-log-service';
+import { openNodeDevtool } from '/common/node/utils';
 
 (async () => {
-  await extProcessInit({ LogServiceClass, builtinCommands: [] });
+  await extProcessInit({
+    builtinCommands: [
+      {
+        id: 'opensumi.help.openDevtools.extension',
+        handler: {
+          handler: () => {
+            openNodeDevtool();
+          },
+        },
+      },
+    ],
+  });
 })();

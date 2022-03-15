@@ -1,4 +1,3 @@
-// tslint:disable no-console
 import * as net from 'net';
 import * as yargs from 'yargs';
 import { Deferred } from '@opensumi/ide-core-common';
@@ -10,8 +9,6 @@ export async function startServer(arg1: NodeModule[] | Partial<IServerAppOpts>) 
     webSocketHandler: [],
     marketplace: {
       showBuiltinExtensions: true,
-      accountId: 'nGJBcqs1D-ma32P3mBftgsfq',
-      masterKey: '-nzxLbuqvrKh8arE0grj2f1H',
     },
     // TODO 临时方案，传递外层 中间件函数
   };

@@ -10,6 +10,7 @@ import { MonacoContribution } from '@opensumi/ide-monaco';
 import { Autowired } from '@opensumi/di';
 import * as monaco from '@opensumi/monaco-editor-core/esm/vs/editor/editor.api';
 import { ExtensionService } from '@opensumi/ide-extension/lib/common';
+import { Constants } from '/common/constants';
 
 @Domain(CommandContribution, MonacoContribution)
 export class OpenSumiDesktopContribution implements CommandContribution, MonacoContribution {
@@ -19,14 +20,14 @@ export class OpenSumiDesktopContribution implements CommandContribution, MonacoC
   @Autowired(ILogger)
   logger: ILogger;
 
-  @Autowired('opensumi-electron-node')
+  @Autowired(Constants.ELECTRON_NODE_SERVICE_NAME)
   nodeService: any;
 
   _chars = 0;
 
   @memoize
   getMainApi(): any {
-    return createElectronMainApi('opensumi');
+    return createElectronMainApi(Constants.ELECTRON_MAIN_API_NAME);
   }
 
   tryToJSON(obj: any) {

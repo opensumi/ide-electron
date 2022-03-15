@@ -14,7 +14,7 @@ import { ExtensionModule } from '@opensumi/ide-extension/lib/node';
 import { OpenVsxExtensionManagerModule } from '@opensumi/ide-extension-manager';
 import { FileSchemeNodeModule } from '@opensumi/ide-file-scheme/lib/node';
 import { AddonsModule } from '@opensumi/ide-addons/lib/node';
-// import { TopBarModule } from 'modules/topbar';
+import { MiniCodeDesktopNodeModule } from './module';
 
 export const CommonNodeModules: ConstructorOf<NodeModule>[] = [
   ServerCommonModule,
@@ -24,17 +24,14 @@ export const CommonNodeModules: ConstructorOf<NodeModule>[] = [
   FileSearchModule,
   SearchModule,
   TerminalNodePtyModule,
-
   ExtensionModule,
   OpenVsxExtensionManagerModule,
   FileSchemeNodeModule,
-
-  // TopBarModule, // Topbar demo
   AddonsModule,
 ];
 
 startServer({
-  modules: [...CommonNodeModules],
+  modules: [...CommonNodeModules, MiniCodeDesktopNodeModule],
 }).then(() => {
   console.log('ready');
   if (process.send) {
