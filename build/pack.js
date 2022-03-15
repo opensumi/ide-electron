@@ -12,16 +12,18 @@ process.env.CSC_IDENTITY_AUTO_DISCOVERY = false;
 fs.copyFileSync(path.join(__dirname, '../build/package.json'), path.join(__dirname, '../app/package.json'));
 
 const targetPlatforms = (process.env.TARGET_PLATFORMS || DEFAULT_TARGET_PLATFORM).split(',').map((str) => str.trim());
+
 const targets = new Map();
 if (targetPlatforms.includes('win32')) {
   targets.set(electronBuilder.Platform.WINDOWS, new Map([[electronBuilder.Arch.x64, ['nsis']]]));
 }
+
 if (targetPlatforms.includes('darwin')) {
   targets.set(
     electronBuilder.Platform.MAC,
     new Map([
       [electronBuilder.Arch.x64, ['dmg']],
-      // [electronBuilder.Arch.arm64, ['dmg']],
+      [electronBuilder.Arch.arm64, ['dmg']],
     ]),
   );
 }
@@ -52,7 +54,7 @@ electronBuilder.build({
     asarUnpack: ['node_modules/@opensumi/vscode-ripgrep'],
     mac: {
       icon: 'build/icon/sumi.png',
-      artifactName: '${productName}-Desktop-${version}.${ext}',
+      artifactName: '${productName}-Desktop-${version}-${arch}.${ext}',
       target: 'dmg',
     },
     win: {

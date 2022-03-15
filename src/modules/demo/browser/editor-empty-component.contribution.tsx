@@ -84,13 +84,11 @@ export const EditorEmptyComponent = () => {
 
   const init = () =>
     // 监听快捷键是否有更新
-     keymapService.onDidKeymapChanges(() => {
+    keymapService.onDidKeymapChanges(() => {
       keymapChangeDelayer.trigger(async () => {
         setKeyMapLoaded(true);
       });
-    })
-  ;
-
+    });
   React.useEffect(() => {
     const disposer = new Disposable();
     disposer.addDispose(init());
@@ -137,7 +135,7 @@ export const EditorEmptyComponent = () => {
     );
   }, [imgLoaded, keyMapLoaded]);
 
-  const logoUri = 'https://img.alicdn.com/imgextra/i2/O1CN01NR0L1l1M3AUVVdKhq_!!6000000001378-2-tps-152-150.png';
+  const logoUri = 'https://img.alicdn.com/imgextra/i2/O1CN01dqjQei1tpbj9z9VPH_!!6000000005951-55-tps-87-78.svg';
   return (
     <div className={styles.empty_component}>
       <img src={logoUri} onLoad={() => setImgLoaded(true)} />

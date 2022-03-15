@@ -36,7 +36,7 @@ export class MainCommandContribution implements CommandContribution {
           if (handler) {
             handler.activate();
           }
-          const binPath = `${electronEnv.env.MAC_CONTENTS_PATH}/Resources/resources/darwin/bin/sumi`;
+          const binPath = `${electronEnv.env.MAC_RESOURCES_PATH}/resources/darwin/bin/sumi`;
           const command = `cd /usr/local/bin && ln -sf '${binPath}' && chmod +x ./sumi\n`;
 
           for (const c of this.terminalService.clients.values()) {
