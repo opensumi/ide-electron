@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
@@ -25,16 +24,6 @@ module.exports = createConfig({
     filename: 'bundle.js',
     path: distDir,
   },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.mjs', '.js', '.json', '.less'],
-    plugins: [
-      new TsconfigPathsPlugin({
-        configFile: tsConfigPath,
-      }),
-    ],
-  },
-  mode: 'development',
-  devtool: 'source-map',
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
@@ -44,6 +33,7 @@ module.exports = createConfig({
         loader: 'ts-loader',
         options: {
           configFile: tsConfigPath,
+          transpileOnly: true,
         },
       },
       {

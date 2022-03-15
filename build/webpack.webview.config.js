@@ -32,6 +32,7 @@ module.exports = createConfig(
           loader: 'ts-loader',
           options: {
             configFile: tsConfigPath,
+            transpileOnly: true,
           },
         },
       ],

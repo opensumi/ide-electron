@@ -31,6 +31,7 @@ const nodeTarget = createConfig({
         loader: 'ts-loader',
         options: {
           configFile: tsConfigPath,
+          transpileOnly: true,
         },
       },
       {
@@ -87,6 +88,7 @@ const workerTarget = createConfig({
         loader: 'ts-loader',
         options: {
           configFile: tsConfigPath,
+          transpileOnly: true,
         },
       },
       {
