@@ -12,7 +12,7 @@ cd ide-electron
 npm install
 npm run build
 npm run rebuild-native -- --force-rebuild=true
-npm run download-extension # 可选
+npm run download-extension # 安装插件（可选）
 npm run start
 ```
 
