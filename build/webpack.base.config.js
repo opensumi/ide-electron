@@ -19,14 +19,12 @@ const createConfig =
       plugins: [
         ...(config.plugins || []),
         new DefinePlugin({
-          'process.env.SERVER_APP_OPTS': `'${product.serverApp || '{}'}'`,
-          'process.env.DATA_FOLDER': `'${product.dataFolderName || ''}'`,
-          'process.env.DEVTOOL_FRONTEND_URL': `'${product.devtoolFrontendUrl || ''}'`,
+          __PRODUCT: JSON.stringify(product),
+
+          SERVER_APP_OPTS: JSON.stringify(product.serverApp || {}),
+          'process.env.DATA_FOLDER': JSON.stringify(product.dataFolderName || ''),
+          'process.env.DEVTOOL_FRONTEND_URL': JSON.stringify(product.devtoolFrontendUrl || ''),
         }),
-        product.extensionManager &&
-          new NormalModuleReplacementPlugin(/\.\.\/extensionManager/, function (resource) {
-            resource.request = resource.request.replace('../extensionManager', product.extensionManager);
-          }),
       ].filter(Boolean),
     };
   };

@@ -6,6 +6,20 @@ import { Deferred } from '@opensumi/ide-core-common';
 import { IServerAppOpts, ServerApp, NodeModule } from '@opensumi/ide-core-node';
 import { Constants } from '../common/constants';
 
+declare const SERVER_APP_OPTS: Record<string, unknown> & {
+  marketplace: Record<string, unknown>;
+};
+
+function getDefinedServerOpts() {
+  try {
+    return SERVER_APP_OPTS;
+  } catch {
+    return {
+      marketplace: {},
+    };
+  }
+}
+
 function getDataFolder(sub: string) {
   return path.join(homedir(), process.env.DATA_FOLDER || Constants.DATA_FOLDER, sub);
 }
@@ -20,7 +34,8 @@ function getServerAppOpts() {
     logDir: getDataFolder('logs'),
   };
   try {
-    const newOpts = JSON.parse(process.env.SERVER_APP_OPTS || '{}') || {};
+    const newOpts = getDefinedServerOpts();
+
     opts = {
       ...opts,
       ...newOpts,
