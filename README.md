@@ -1,6 +1,6 @@
 # OpenSumi IDE Electron
 
-[中文文档](https://opensumi.com/zh/docs/integrate/quick-start/electron)
+English | [中文文档](https://opensumi.com/zh/docs/integrate/quick-start/electron)
 
 ![OpenSumi Desktop](./snapshots/sumi-electron.png)
 
