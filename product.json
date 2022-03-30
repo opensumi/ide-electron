@@ -1,0 +1,11 @@
+{
+  "nameShort": "Sumi - OSS",
+  "nameLong": "Sumi - OSS",
+  "applicationName": "sumi-oss",
+  "dataFolderName": ".sumi-oss",
+  "urlProtocol": "sumi-oss",
+  "serverApp": {
+    "marketplace": {}
+  },
+  "devtoolFrontendUrl": ""
+}
