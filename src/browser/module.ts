@@ -3,12 +3,11 @@ import { Injectable } from '@opensumi/di';
 
 import { ProjectSwitcherContribution } from './project';
 import { MainCommandContribution } from './commands';
-import { OpenSumiDesktopContribution } from './debug';
-import { Constants } from '/common/constants';
+import { Constants } from '../common/constants';
 
 @Injectable()
 export class MiniDesktopModule extends BrowserModule {
-  providers = [MainCommandContribution, ProjectSwitcherContribution, OpenSumiDesktopContribution];
+  providers = [MainCommandContribution, ProjectSwitcherContribution];
 
   backServices = [
     {

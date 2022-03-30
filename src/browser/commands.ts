@@ -1,50 +1,102 @@
-import { Autowired, Injector, INJECTOR_TOKEN } from '@opensumi/di';
-import { electronEnv } from '@opensumi/ide-core-browser';
-import { Domain, CommandContribution, CommandRegistry } from '@opensumi/ide-core-common';
-import { IMainLayoutService } from '@opensumi/ide-main-layout';
-import { ITerminalController } from '@opensumi/ide-terminal-next';
+import {
+  CommandContribution,
+  Domain,
+  CommandRegistry,
+  ILogger,
+  createElectronMainApi,
+  memoize,
+} from '@opensumi/ide-core-browser';
+import { Autowired } from '@opensumi/di';
+import { ExtensionService } from '@opensumi/ide-extension/lib/common';
+import { Commands, Constants, ExtensionCommands } from '../common/constants';
 
 @Domain(CommandContribution)
 export class MainCommandContribution implements CommandContribution {
-  @Autowired(INJECTOR_TOKEN)
-  injector: Injector;
+  @Autowired(ExtensionService)
+  extensionService: ExtensionService;
 
-  @Autowired(ITerminalController)
-  terminalService: ITerminalController;
+  @Autowired(ILogger)
+  logger: ILogger;
 
-  @Autowired(IMainLayoutService)
-  private mainLayoutService: IMainLayoutService;
+  @Autowired(Constants.ELECTRON_NODE_SERVICE_PATH)
+  nodeService: any;
 
-  registerCommands(registry: CommandRegistry): void {
-    registry.registerCommand(
+  _chars = 0;
+
+  @memoize
+  getMainApi(): any {
+    return createElectronMainApi(Constants.ELECTRON_MAIN_API_NAME);
+  }
+
+  tryToJSON(obj: any) {
+    try {
+      return JSON.stringify(obj).substr(0, 5000);
+    } catch (e) {
+      return 'unable to JSON.stringify';
+    }
+  }
+
+  registerCommands(commands: CommandRegistry): void {
+    commands.beforeExecuteCommand((command: string, args: any[]) => {
+      this.logger.log('execute_command', command, ...args.map((a) => this.tryToJSON(a)));
+      return args;
+    });
+
+    commands.registerCommand(
+      {
+        id: Commands.OPEN_DEVTOOLS_MAIN,
+        label: '调试主进程',
+      },
+      {
+        execute: () => {
+          this.getMainApi().debugMain();
+        },
+      },
+    );
+
+    commands.registerCommand(
+      {
+        id: Commands.OPEN_DEVTOOLS_NODE,
+        label: '调试Node进程',
+      },
+      {
+        execute: () => {
+          this.nodeService.debugNode();
+        },
+      },
+    );
+
+    commands.registerCommand(
+      {
+        id: Commands.OPEN_DEVTOOLS_EXTENSION,
+        label: '调试插件进程',
+      },
+      {
+        execute: () => {
+          this.extensionService.executeExtensionCommand(ExtensionCommands.OPEN_DEVTOOLS, []);
+        },
+      },
+    );
+    commands.registerCommand(
       {
         id: 'sumi.commandLineTool.install',
         label: 'install command line sumi',
       },
       {
         execute: async () => {
-          if (this.terminalService.clients.size === 0) {
-            await this.terminalService.createClientWithWidget2({
-              terminalOptions: {
-                name: 'install sumi',
-                cwd: '/usr/local/bin',
-              },
-            });
-          }
+          this.nodeService.installShellCommand();
+        },
+      },
+    );
 
-          const handler = this.mainLayoutService.getTabbarHandler('terminal');
-          if (handler) {
-            handler.activate();
-          }
-          const binPath = `${electronEnv.env.MAC_RESOURCES_PATH}/resources/darwin/bin/sumi`;
-          const command = `cd /usr/local/bin && ln -sf '${binPath}' && chmod +x ./sumi\n`;
-
-          for (const c of this.terminalService.clients.values()) {
-            if (c) {
-              c.sendText(command);
-              return;
-            }
-          }
+    commands.registerCommand(
+      {
+        id: 'sumi.commandLineTool.uninstall',
+        label: 'uninstall command line sumi',
+      },
+      {
+        execute: async () => {
+          this.nodeService.uninstallShellCommand();
         },
       },
     );

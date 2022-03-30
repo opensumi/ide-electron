@@ -38,6 +38,8 @@ const electronApp = new ElectronMainApp({
 });
 
 export async function launch(workspace?: string) {
+  console.log('workspace', workspace);
+
   await Promise.all([electronApp.init(), app.whenReady()]);
 
   if (!workspace || !existsSync(workspace)) {

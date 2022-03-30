@@ -7,7 +7,7 @@ import {
 import { Domain } from '@opensumi/ide-core-common';
 import { Injectable, Autowired } from '@opensumi/di';
 import { openNodeDevtool } from '../common/node/utils';
-import { Constants } from '/common/constants';
+import { Constants } from '../common/constants';
 
 @Injectable()
 export class OpenSumiDesktopMainModule extends ElectronMainModule {
