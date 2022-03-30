@@ -11,8 +11,6 @@ export function getInspectWsPath() {
   }
 
   const url = inspector.url();
-  console.log('inspector url: ', url);
-
   return url;
 }
 
@@ -22,14 +20,18 @@ export function openNodeDevtool() {
     return;
   }
 
-  const devtoolUrl = process.env.DEVTOOL_FRONTEND_URL
-    ? ''
-    : process.env.DEVTOOL_FRONTEND_URL + '?ws=' + url.substring(4);
+  let devtoolUrl = 'chrome://inspect/';
+
+  if (process.env.DEVTOOL_FRONTEND_URL) {
+    // remove first 5 char `ws://xxx` -> `xxx`
+    devtoolUrl = process.env.DEVTOOL_FRONTEND_URL + url.substring(5);
+  }
 
   if (!devtoolUrl) {
     return;
   }
 
   const start = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
-  require('child_process').exec(start + ' ' + url);
+  console.log('you can open the devtool url', devtoolUrl);
+  require('child_process').exec(start + ' ' + devtoolUrl);
 }
