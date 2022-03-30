@@ -51,7 +51,6 @@ import { VariableModule } from '@opensumi/ide-variable/lib/browser';
 import { KeymapsModule } from '@opensumi/ide-keymaps/lib/browser';
 import { MonacoEnhanceModule } from '@opensumi/ide-monaco-enhance/lib/browser/module';
 
-import { OpenVsxExtensionManagerModule } from '@opensumi/ide-extension-manager/lib/browser';
 import { TerminalNextModule } from '@opensumi/ide-terminal-next/lib/browser';
 import { CommentsModule } from '@opensumi/ide-comments/lib/browser';
 
@@ -63,6 +62,8 @@ import { LocalBasicModule } from 'modules/basic/browser';
 
 import { customLayoutConfig } from './layout';
 import { MiniDesktopModule } from './module';
+
+import { ExtensionManagerModule } from '../extensionManager/browser';
 
 export const CommonBrowserModules: ConstructorOf<BrowserModule>[] = [
   MainLayoutModule,
@@ -100,7 +101,7 @@ export const CommonBrowserModules: ConstructorOf<BrowserModule>[] = [
   KeymapsModule,
   TerminalNextModule,
   ExtensionModule,
-  OpenVsxExtensionManagerModule,
+  ExtensionManagerModule,
   MonacoEnhanceModule,
   ClientAddonModule,
   CommentsModule,

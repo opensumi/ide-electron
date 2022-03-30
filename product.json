@@ -7,5 +7,6 @@
   "serverApp": {
     "marketplace": {}
   },
-  "devtoolFrontendUrl": ""
+  "devtoolFrontendUrl": "",
+  "extensionManager": "../extensionManager"
 }

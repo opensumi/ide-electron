@@ -7,7 +7,7 @@ import { IServerAppOpts, ServerApp, NodeModule } from '@opensumi/ide-core-node';
 import { Constants } from '../common/constants';
 
 function getDataFolder(sub: string) {
-  return path.join(homedir(), process.env.DATA_FOLDER || Constants.PREFERENCE_DIR_NAME, sub);
+  return path.join(homedir(), process.env.DATA_FOLDER || Constants.DATA_FOLDER, sub);
 }
 
 function getServerAppOpts() {
