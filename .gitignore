@@ -91,3 +91,6 @@ packages/vscode-extension/test/init/node_modules
 
 extensions
 app
+
+# disable lock
+yarn.lock
