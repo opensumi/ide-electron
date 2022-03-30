@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const electronBuilder = require('electron-builder');
 const rootPackage = require('../package.json');
-
+const rimraf = require('rimraf');
 const DEFAULT_TARGET_PLATFORM = 'darwin';
 // x64 arm64 全部值见 {electronBuilder.Arch}
-const DEFAULT_TARGET_ARCH = 'x64';
+const TARGET_ARCH = process.env.TARGET_ARCHS || 'x64';
 
 // disable code sign
 process.env.CSC_IDENTITY_AUTO_DISCOVERY = false;
@@ -14,7 +14,7 @@ process.env.CSC_IDENTITY_AUTO_DISCOVERY = false;
 fs.copyFileSync(path.join(__dirname, '../build/package.json'), path.join(__dirname, '../app/package.json'));
 
 const targetPlatforms = (process.env.TARGET_PLATFORMS || DEFAULT_TARGET_PLATFORM).split(',').map((str) => str.trim());
-const targetArchs = (process.env.TARGET_ARCHS || DEFAULT_TARGET_ARCH).split(',').map((str) => str.trim());
+const targetArchs = TARGET_ARCH.split(',').map((str) => str.trim());
 
 const targets = new Map();
 if (targetPlatforms.includes('win32')) {
@@ -24,6 +24,8 @@ if (targetPlatforms.includes('win32')) {
 if (targetPlatforms.includes('darwin')) {
   targets.set(electronBuilder.Platform.MAC, new Map(targetArchs.map((v) => [electronBuilder.Arch[v], ['dmg']])));
 }
+const outputPath = path.join(__dirname, `../out-${TARGET_ARCH}`);
+rimraf.sync(outputPath);
 
 electronBuilder.build({
   publish: null,
@@ -45,7 +47,7 @@ electronBuilder.build({
       },
     ],
     directories: {
-      output: path.join(__dirname, '../out/'),
+      output: outputPath,
     },
     asar: true,
     asarUnpack: ['node_modules/@opensumi/vscode-ripgrep'],

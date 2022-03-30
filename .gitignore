@@ -92,5 +92,8 @@ packages/vscode-extension/test/init/node_modules
 extensions
 app
 
+out-x64
+out-arm64
+
 # disable lock
 yarn.lock

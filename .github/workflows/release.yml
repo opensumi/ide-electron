@@ -36,5 +36,5 @@ jobs:
           prerelease: true
           files: |
             LICENSE
-            out/*.dmg
-            out/*.exe
+            out-x64/*.dmg
+            out-x64/*.exe
