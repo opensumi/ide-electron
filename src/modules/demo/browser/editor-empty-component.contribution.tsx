@@ -19,34 +19,6 @@ import styles from './editor-empty-component.module.less';
 
 const DEFAULT_CHANGE_DELAY = 500; // ms
 
-// 集成侧自定义多语言
-export const localizationBundle = {
-  'zh-CN': {
-    languageId: 'zh-CN',
-    languageName: 'Chinese',
-    localizedLanguageName: '中文(中国)',
-    contents: {
-      'custom.quick_open': '转到文件',
-      'custom.command_palette': '显示所有命令',
-      'custom.terminal_panel': '切换终端',
-      'custom.search_panel': '切换搜索面板',
-    },
-  },
-  'en-US': {
-    languageId: 'en-US',
-    languageName: 'English',
-    localizedLanguageName: 'English',
-    contents: {
-      'custom.quick_open': 'Quick Open',
-      'custom.command_palette': 'Command Palette',
-      'custom.terminal_panel': 'Switch to Terminal Panel',
-      'custom.search_panel': 'Switch to Search Panel',
-    },
-  },
-};
-registerLocalizationBundle(localizationBundle['zh-CN']);
-registerLocalizationBundle(localizationBundle['en-US']);
-
 /**
  * 单行快捷键信息
  * @param param0
