@@ -3,6 +3,14 @@
   "extensions": {
     "vscode": [
       {
+        "name": "node-debug",
+        "version": "1.41.1"
+      },
+      {
+        "name": "node-debug2",
+        "version": "1.42.4"
+      },
+      {
         "name": "typescript-language-features",
         "version": "1.60.0"
       },
@@ -39,6 +47,10 @@
         "version": "1.55.2"
       },
       {
+        "name": "debug-auto-launch",
+        "version": "1.55.2"
+      },
+      {
         "name": "docker",
         "version": "1.55.2"
       },
@@ -53,6 +65,10 @@
       {
         "name": "git-ui",
         "version": "1.55.2"
+      },
+      {
+        "name": "git-base",
+        "version": "1.64.0-next.68976705968"
       },
       {
         "name": "go",
