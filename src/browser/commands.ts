@@ -73,7 +73,11 @@ export class MainCommandContribution implements CommandContribution {
       },
       {
         execute: () => {
-          this.extensionService.executeExtensionCommand(ExtensionCommands.OPEN_DEVTOOLS, []);
+          (this.extensionService as any).extensionCommandManager.executeExtensionCommand(
+            'node',
+            ExtensionCommands.OPEN_DEVTOOLS,
+            [],
+          );
         },
       },
     );
