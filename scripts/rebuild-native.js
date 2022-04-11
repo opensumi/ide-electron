@@ -72,7 +72,13 @@ function rebuildModule(modulePath, type, version) {
 
 function getBuildCacheDir(modulePath, type, version, target) {
   const info = require(join(modulePath, './package.json'));
-  return join(require('os').tmpdir(), 'ide_build_cache', target, info.name + '-' + info.version, type + '-' + version);
+  return join(
+    require('os').tmpdir(),
+    'ide_build_cache',
+    target,
+    info.name + '-' + info.version + '-' + arch,
+    type + '-' + version,
+  );
 }
 
 nativeModules.forEach((path) => {
