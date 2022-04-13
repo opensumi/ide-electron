@@ -1,3 +1,5 @@
+require('../scripts/apply-product');
+
 const fs = require('fs');
 const path = require('path');
 const electronBuilder = require('electron-builder');
