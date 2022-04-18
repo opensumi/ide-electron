@@ -1,8 +1,3 @@
-const { sumiVersion: _sumiVersion, version: _productVersion } = require('../product.json');
-
-const sumiVersion = process.env.SUMI_VERSION || _sumiVersion;
-const productVersion = process.env.PRODUCT_VERSION || _productVersion;
-
 const { writeFileSync } = require('fs');
 const path = require('path');
 
@@ -27,7 +22,21 @@ function saveWithPrettier(jsonPath, jsonContent) {
   }
 }
 
+function saveProductJson() {
+  const productJson = require('../product.json');
+  if (process.env.SUMI_VERSION) {
+    productJson['sumiVersion'] = String(process.env.SUMI_VERSION).trim();
+  }
+  if (process.env.PRODUCT_VERSION) {
+    productJson['version'] = String(process.env.PRODUCT_VERSION).trim();
+  }
+  const jsonPath = path.join(__dirname, '../product.json');
+  saveWithPrettier(jsonPath, productJson);
+}
+
 function applySumiVersion() {
+  const { sumiVersion } = require('../product.json');
+
   const package = require('../package.json');
   const devDependencies = package['devDependencies'];
   const jsonPath = path.join(__dirname, '../package.json');
@@ -47,11 +56,15 @@ function applySumiVersion() {
 }
 
 function applyVersion() {
+  const { version: productVersion } = require('../product.json');
+
   const buildPackage = require('../build/package.json');
   buildPackage['version'] = productVersion;
   const jsonPath = path.join(__dirname, '../build/package.json');
   saveWithPrettier(jsonPath, buildPackage);
 }
+
+saveProductJson();
 
 applySumiVersion();
 applyVersion();
