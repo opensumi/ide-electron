@@ -3,21 +3,25 @@ const { sumiVersion, version } = require('../product.json');
 const { writeFileSync } = require('fs');
 const path = require('path');
 
-const prettier = require('prettier');
-
 function saveWithPrettier(jsonPath, jsonContent) {
-  const fileInfo = prettier.getFileInfo.sync(jsonPath, {
-    resolveConfig: true,
-  });
-  prettier.resolveConfigFile().then((v) => {
-    prettier.resolveConfig(v).then((options) => {
-      const content = prettier.format(JSON.stringify(jsonContent), {
-        parser: fileInfo.inferredParser,
-        ...options,
-      });
-      writeFileSync(jsonPath, content);
+  try {
+    const prettier = require('prettier');
+    const fileInfo = prettier.getFileInfo.sync(jsonPath, {
+      resolveConfig: true,
     });
-  });
+    prettier.resolveConfigFile().then((v) => {
+      prettier.resolveConfig(v).then((options) => {
+        const content = prettier.format(JSON.stringify(jsonContent), {
+          parser: fileInfo.inferredParser,
+          ...options,
+        });
+        writeFileSync(jsonPath, content);
+      });
+    });
+  } catch (error) {
+    console.log('prettier is not installed');
+    writeFileSync(jsonPath, JSON.stringify(jsonContent, null, 2));
+  }
 }
 
 function applySumiVersion() {
