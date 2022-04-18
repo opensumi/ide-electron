@@ -9,7 +9,7 @@ on:
       productVersion:
         description: "product version, fallback use the value defined in `product.json`"
         required: false
-    
+
 jobs:
   next-version:
     name: Pack
@@ -53,7 +53,12 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: desktop-artifact
+          name: desktop-artifact arm64
           path: |
             ./out-arm64/*.dmg
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: desktop-artifact x64
+          path: |
             ./out-x64/*.dmg
