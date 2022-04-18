@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       sumiVersion:
-        description: "A valid sumi version"
-        required: true
+        description: "A valid sumi version, fallback use the value defined in `product.json`"
+        required: false
       productVersion:
-        description: "product version"
-        required: true
+        description: "product version, fallback use the value defined in `product.json`"
+        required: false
     
 jobs:
   next-version:
@@ -47,6 +47,9 @@ jobs:
           yarn rebuild-native
           yarn download-extension
           yarn pack:all
+        env:
+          SUMI_VERSION: ${{ github.event.inputs.sumiVersion }}
+          PRODUCT_VERSION: ${{ github.event.inputs.productVersion }}
 
       - uses: actions/upload-artifact@v3
         with:
