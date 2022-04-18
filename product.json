@@ -1,6 +1,5 @@
 {
-  "nameShort": "Sumi - OSS",
-  "nameLong": "Sumi - OSS",
+  "productName": "Sumi - OSS",
   "applicationName": "sumi-oss",
   "dataFolderName": ".sumi-oss",
   "version": "1.3.6",

@@ -1,5 +1,6 @@
 require('../scripts/apply-product');
 
+const { productName } = require('../product.json');
 const useNpmMirror = Boolean(process.env.USE_NPM_MIRROR);
 
 const fs = require('fs');
@@ -35,7 +36,7 @@ electronBuilder.build({
   publish: null,
   targets: targets.size ? targets : undefined,
   config: {
-    productName: 'OpenSumi',
+    productName,
     npmArgs: useNpmMirror ? ['--registry=https://registry.npmmirror.com'] : [],
     electronVersion: rootPackage.devDependencies.electron, // 根据前置 package.json 判断版本号即可
     extraResources: [
