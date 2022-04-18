@@ -9,6 +9,14 @@ on:
       productVersion:
         description: "product version, fallback use the value defined in `product.json`"
         required: false
+      targetArches:
+        description: "target arches, use comma to split multi arches"
+        required: true
+        default: "x64,arm64"
+      targetPlatforms:
+        description: "target platforms, use comma to split multi arches"
+        required: true
+        default: "darwin"
 
 jobs:
   next-version:
@@ -43,13 +51,15 @@ jobs:
       - name: Install dependencies & Pack
         run: |
           node ./scripts/apply-product.js
+          echo "package.json:\n" && cat package.json
+          echo "./build/package.json\n" && cat ./build/package.json
           yarn
-          yarn rebuild-native
           yarn download-extension
           yarn pack:all
         env:
           SUMI_VERSION: ${{ github.event.inputs.sumiVersion }}
           PRODUCT_VERSION: ${{ github.event.inputs.productVersion }}
+          TARGET_ARCHES: ${{ github.event.inputs.targetArches }}
 
       - uses: actions/upload-artifact@v3
         with:

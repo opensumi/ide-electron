@@ -10,7 +10,7 @@ const rootPackage = require('../package.json');
 const rimraf = require('rimraf');
 const DEFAULT_TARGET_PLATFORM = 'darwin';
 // x64 arm64 全部值见 {electronBuilder.Arch}
-const TARGET_ARCH = process.env.TARGET_ARCHS || 'x64';
+const TARGET_ARCH = process.env.TARGET_ARCHES || 'x64';
 
 // disable code sign
 process.env.CSC_IDENTITY_AUTO_DISCOVERY = false;
@@ -19,7 +19,7 @@ process.env.CSC_IDENTITY_AUTO_DISCOVERY = false;
 fs.copyFileSync(path.join(__dirname, '../build/package.json'), path.join(__dirname, '../app/package.json'));
 
 const targetPlatforms = (process.env.TARGET_PLATFORMS || DEFAULT_TARGET_PLATFORM).split(',').map((str) => str.trim());
-const targetArchs = TARGET_ARCH.split(',').map((str) => str.trim());
+const targetArches = TARGET_ARCH.split(',').map((str) => str.trim());
 
 const targets = new Map();
 if (targetPlatforms.includes('win32')) {
@@ -27,8 +27,11 @@ if (targetPlatforms.includes('win32')) {
 }
 
 if (targetPlatforms.includes('darwin')) {
-  targets.set(electronBuilder.Platform.MAC, new Map(targetArchs.map((v) => [electronBuilder.Arch[v], ['dmg']])));
+  const archMap = new Map(targetArches.map((v) => [electronBuilder.Arch[v], ['dmg']]));
+  // archMap.set(electronBuilder.Arch.universal, ['dmg']);
+  targets.set(electronBuilder.Platform.MAC, archMap);
 }
+
 const outputPath = path.join(__dirname, `../out-${TARGET_ARCH}`);
 rimraf.sync(outputPath);
 
@@ -38,7 +41,7 @@ electronBuilder.build({
   config: {
     productName,
     npmArgs: useNpmMirror ? ['--registry=https://registry.npmmirror.com'] : [],
-    electronVersion: rootPackage.devDependencies.electron, // 根据前置 package.json 判断版本号即可
+    electronVersion: rootPackage.devDependencies.electron,
     extraResources: [
       {
         from: path.join(__dirname, '../extensions'),
@@ -58,11 +61,11 @@ electronBuilder.build({
     asarUnpack: ['node_modules/@opensumi/vscode-ripgrep'],
     mac: {
       icon: 'build/icon/sumi.png',
-      artifactName: '${productName}-Desktop-${version}-${arch}.${ext}',
+      artifactName: '${productName}-${version}-${arch}.${ext}',
       target: 'dmg',
     },
     win: {
-      artifactName: '${productName}-Desktop-${version}.${ext}',
+      artifactName: '${productName}-${version}.${ext}',
       icon: 'build/icon/sumi.ico',
       target: [
         {

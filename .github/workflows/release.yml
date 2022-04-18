@@ -25,7 +25,6 @@ jobs:
       - name: Package Electron
         run: |
           npm i
-          npm run rebuild-native
           npm run pack
         env:
           TARGET_PLATFORMS: darwin
