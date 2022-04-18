@@ -1,0 +1,56 @@
+name: Pack a dmg for testing
+
+on:
+  workflow_dispatch:
+    inputs:
+      sumiVersion:
+        description: "A valid sumi version"
+        required: true
+      productVersion:
+        description: "product version"
+        required: true
+    
+jobs:
+  next-version:
+    name: Pack
+
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      # 判断用户是否有写权限
+      - name: "Check if user has write access"
+        uses: "lannonbr/repo-permission-check-action@2.0.0"
+        with:
+          permission: "write"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Checkout 到
+      - uses: actions/checkout@v2
+        if: success()
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+
+      # 安装依赖并构建
+      - name: Install dependencies & Pack
+        run: |
+          node ./scripts/apply-product.js
+          yarn
+          yarn rebuild-native
+          yarn download-extension
+          yarn pack:all
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: desktop-artifact
+          path: |
+            ./out-arm64/*.dmg
+            ./out-x64/*.dmg
