@@ -1,4 +1,7 @@
-const { sumiVersion, version } = require('../product.json');
+const { sumiVersion: _sumiVersion, version: _productVersion } = require('../product.json');
+
+const sumiVersion = process.env.SUMI_VERSION || _sumiVersion;
+const productVersion = process.env.PRODUCT_VERSION || _productVersion;
 
 const { writeFileSync } = require('fs');
 const path = require('path');
@@ -45,7 +48,7 @@ function applySumiVersion() {
 
 function applyVersion() {
   const buildPackage = require('../build/package.json');
-  buildPackage['version'] = version;
+  buildPackage['version'] = productVersion;
   const jsonPath = path.join(__dirname, '../build/package.json');
   saveWithPrettier(jsonPath, buildPackage);
 }
