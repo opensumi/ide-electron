@@ -31,7 +31,7 @@
     "pack:all": "npm run pack:arm64 && npm run pack:x64",
     "pack": "npm run build-prod && node build/pack.js",
     "rebuild-native": "node ./scripts/rebuild-native.js --target=electron",
-    "download-extension": "cross-env DEBUG=InstallExtension node scripts/download.js",
+    "download-extension": "cross-env DEBUG=InstallExtension node scripts/download-extensions.js",
     "prepare": "husky install"
   },
   "repository": {

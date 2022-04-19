@@ -13,7 +13,7 @@ const { v4 } = require('uuid');
 // 放置 vscode extension 的目录
 const targetDir = path.resolve(__dirname, '../extensions/');
 
-const { extensions } = require(path.resolve(__dirname, '../config/extensions.json'));
+const { extensions } = require(path.resolve(__dirname, '../build/extensions.json'));
 
 // 限制并发数，运行promise
 const parallelRunPromise = (lazyPromises, n) => {
