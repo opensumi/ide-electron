@@ -3,7 +3,7 @@ import * as yargs from 'yargs';
 import path from 'path';
 import { homedir } from 'os';
 import { Deferred } from '@opensumi/ide-core-common';
-import { IServerAppOpts, ServerApp, NodeModule } from '@opensumi/ide-core-node';
+import { IServerAppOpts, ServerApp } from '@opensumi/ide-core-node';
 import { Constants } from '../common/constants';
 
 declare const SERVER_APP_OPTS: Record<string, unknown> & {
@@ -21,7 +21,7 @@ function getDefinedServerOpts() {
 }
 
 function getDataFolder(sub: string) {
-  return path.join(homedir(), process.env.DATA_FOLDER || Constants.DATA_FOLDER, sub);
+  return path.join(homedir(), Constants.DATA_FOLDER, sub);
 }
 
 function getServerAppOpts() {
@@ -48,20 +48,14 @@ function getServerAppOpts() {
   return opts;
 }
 
-export async function startServer(arg1: NodeModule[] | Partial<IServerAppOpts>) {
+export async function startServer(_opts: Partial<IServerAppOpts>) {
   const deferred = new Deferred<net.Server>();
   let opts: IServerAppOpts = getServerAppOpts();
-  if (Array.isArray(arg1)) {
-    opts = {
-      ...opts,
-      modulesInstances: arg1,
-    };
-  } else {
-    opts = {
-      ...opts,
-      ...arg1,
-    };
-  }
+
+  opts = {
+    ...opts,
+    ..._opts,
+  };
 
   const server = net.createServer();
   const listenPath = (await yargs.argv).listenPath;

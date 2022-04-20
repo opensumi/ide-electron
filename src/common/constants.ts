@@ -3,7 +3,7 @@ export const Constants = {
   ELECTRON_NODE_SERVICE_NAME: 'opensumi-electron-node',
   ELECTRON_NODE_SERVICE_PATH: 'opensumi-electron-node-service-path',
 
-  DATA_FOLDER: '.sumi',
+  DATA_FOLDER: process.env.DATA_FOLDER || '.sumi',
 };
 
 export const Commands = {
