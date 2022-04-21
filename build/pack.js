@@ -58,7 +58,7 @@ electronBuilder.build({
       output: outputPath,
     },
     asar: true,
-    asarUnpack: ['node_modules/@opensumi/vscode-ripgrep'],
+    asarUnpack: ['node_modules/@opensumi/ripgrep'],
     mac: {
       icon: 'build/icon/sumi.png',
       artifactName: '${productName}-${version}-${arch}.${ext}',
