@@ -1,11 +1,11 @@
+import { join } from 'path';
 import { app } from 'electron';
+import { existsSync, statSync, ensureDir } from 'fs-extra';
 import { ElectronMainApp } from '@opensumi/ide-core-electron-main';
 import { isOSX, URI } from '@opensumi/ide-core-common';
-import { join } from 'path';
 import { MainModule } from './services';
 import { OpenSumiDesktopMainModule } from './module';
 import { WebviewElectronMainModule } from '@opensumi/ide-webview/lib/electron-main';
-import { existsSync, statSync } from 'fs';
 
 const getResourcesPath = () => {
   const appPath = app.getAppPath();
@@ -40,7 +40,7 @@ const electronApp = new ElectronMainApp({
 export async function launch(workspace?: string) {
   console.log('workspace', workspace);
 
-  await Promise.all([electronApp.init(), app.whenReady()]);
+  await Promise.all([electronApp.init(), app.whenReady(), ensureDir(getExtensionDir())]);
 
   if (!workspace || !existsSync(workspace)) {
     if (electronApp.getCodeWindows().length === 0) {
