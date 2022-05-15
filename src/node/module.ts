@@ -38,7 +38,7 @@ export async function symStat(path: string): Promise<any> {
   try {
     const stats = await stat(path);
 
-    return { stat: stats, symbolicLink: lstats?.isSymbolicLink() ? { dangling: false } : undefined };
+    return { stat: stats, symbolicLink: lstats && lstats.isSymbolicLink() ? { dangling: false } : undefined };
   } catch (error) {
     // If the link points to a nonexistent file we still want
     // to return it as result while setting dangling: true flag

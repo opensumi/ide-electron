@@ -39,9 +39,12 @@
     "url": "git@github.com:opensumi/ide-electron.git"
   },
   "license": "MIT",
-  "dependencies": {},
+  "overrides": {
+    "vscode-jsonrpc": "6.0.0"
+  },
   "resolutions": {
     "requestretry": "6.0.0",
+    "vscode-jsonrpc": "6.0.0",
     "y18n": "5.0.5"
   },
   "lint-staged": {
@@ -131,7 +134,7 @@
     "rimraf": "^3.0.0",
     "style-loader": "^0.23.1",
     "style-resources-loader": "^1.2.1",
-    "ts-loader": "^6.0.1",
+    "ts-loader": "^8.4.0",
     "ts-node": "8.0.2",
     "tsconfig-paths": "^3.8.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
