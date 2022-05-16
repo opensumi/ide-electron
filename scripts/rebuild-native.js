@@ -10,12 +10,30 @@ const nativeModules = [
   join(__dirname, '../node_modules/spdlog'),
 ];
 
+let version;
 let commands;
 
 const target = argv.target || 'node';
-const arch = argv.arch || os.arch();
-const platform = os.platform();
-let version;
+const platform = process.env.npm_config_platform || process.platform;
+let arch = process.env.npm_config_arch || process.arch || os.arch();
+
+if (
+  platform === 'darwin' &&
+  process.platform === 'darwin' &&
+  arch === 'x64' &&
+  process.env.npm_config_arch === undefined
+) {
+  // When downloading for macOS ON macOS and we think we need x64 we should
+  // check if we're running under rosetta and download the arm64 version if appropriate
+  try {
+    const output = childProcess.execSync('sysctl -in sysctl.proc_translated');
+    if (output.toString().trim() === '1') {
+      arch = 'arm64';
+    }
+  } catch {
+    // Ignore failure
+  }
+}
 
 if (target === 'electron') {
   version = argv.electronVersion || require('electron/package.json').version;
