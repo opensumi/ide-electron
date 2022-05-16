@@ -49,7 +49,6 @@ module.exports = createConfig(
       modules: [path.join(__dirname, '../node_modules')],
       extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
       mainFields: ['loader', 'main'],
-      moduleExtensions: ['-loader'],
     },
     plugins: [
       new CopyPlugin({

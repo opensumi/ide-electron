@@ -12,18 +12,13 @@ const { createConfig } = require('./webpack.base.config');
 
 module.exports = createConfig({
   entry: path.join(srcDir, './index.ts'),
-  node: {
-    net: 'empty',
-    child_process: 'empty',
-    path: true,
-    url: false,
-    fs: 'empty',
-    Buffer: false,
-    process: false,
-  },
+  target: 'electron-renderer',
   output: {
     filename: 'bundle.js',
     path: distDir,
+  },
+  externalsPresets: {
+    node: true,
   },
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
@@ -98,7 +93,7 @@ module.exports = createConfig({
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
+              name: '[name][contenthash].[ext]',
               outputPath: 'fonts/',
             },
           },
@@ -118,7 +113,6 @@ module.exports = createConfig({
     modules: [path.join(__dirname, '../node_modules')],
     extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
     mainFields: ['loader', 'main'],
-    moduleExtensions: ['-loader'],
   },
   plugins: [
     new HtmlWebpackPlugin({

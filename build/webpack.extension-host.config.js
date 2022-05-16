@@ -55,7 +55,6 @@ const nodeTarget = createConfig({
     modules: [path.join(__dirname, '../node_modules')],
     extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
     mainFields: ['loader', 'main'],
-    moduleExtensions: ['-loader'],
   },
 });
 
@@ -66,10 +65,6 @@ const workerTarget = createConfig({
     filename: 'index.worker.js',
     path: distDir,
   },
-  node: {
-    net: 'empty',
-    tls: 'empty',
-  },
   resolve: {
     extensions: ['.ts', '.tsx', '.mjs', '.js', '.json', '.less'],
     mainFields: ['main'],
@@ -78,6 +73,12 @@ const workerTarget = createConfig({
         configFile: tsConfigPath,
       }),
     ],
+    fallback: {
+      os: false,
+      net: false,
+      path: false,
+      global: false,
+    },
   },
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
@@ -112,7 +113,6 @@ const workerTarget = createConfig({
     modules: [path.join(__dirname, '../node_modules')],
     extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
     mainFields: ['loader', 'main'],
-    moduleExtensions: ['-loader'],
   },
 });
 
