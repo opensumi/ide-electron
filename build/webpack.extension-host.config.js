@@ -79,6 +79,7 @@ const workerTarget = createConfig({
       path: false,
       global: false,
       util: false,
+      crypto: false,
     },
   },
   module: {

@@ -26,7 +26,7 @@ if (
   // When downloading for macOS ON macOS and we think we need x64 we should
   // check if we're running under rosetta and download the arm64 version if appropriate
   try {
-    const output = childProcess.execSync('sysctl -in sysctl.proc_translated');
+    const output = execSync('sysctl -in sysctl.proc_translated');
     if (output.toString().trim() === '1') {
       arch = 'arm64';
     }
