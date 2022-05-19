@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
   Domain,
   ComponentContribution,
@@ -11,7 +11,7 @@ import { KeybindingRegistry } from '@opensumi/ide-core-browser/lib/keybinding/ke
 import { useInjectable } from '@opensumi/ide-core-browser/lib/react-hooks';
 import { KeybindingView } from '@opensumi/ide-quick-open/lib/browser/components/keybinding';
 import { QUICK_OPEN_COMMANDS } from '@opensumi/ide-quick-open/lib/common';
-import { Disposable, localize, registerLocalizationBundle } from '@opensumi/ide-core-common';
+import { localize, registerLocalizationBundle } from '@opensumi/ide-core-common';
 import { IKeymapService } from '@opensumi/ide-keymaps/lib/common/keymaps';
 import { ThrottledDelayer } from '@opensumi/ide-core-common/lib/async';
 
@@ -54,19 +54,21 @@ export const EditorEmptyComponent = () => {
     return primaryKeybinding || keyBindings[0];
   };
 
-  const init = () =>
+  useEffect(() => {
+    let isMount = true;
+
     // 监听快捷键是否有更新
-    keymapService.onDidKeymapChanges(() => {
+    const keymapChangesDisposer = keymapService.onDidKeymapChanges(() => {
       keymapChangeDelayer.trigger(async () => {
-        setKeyMapLoaded(true);
+        if (isMount) {
+          setKeyMapLoaded(true);
+        }
       });
     });
-  React.useEffect(() => {
-    const disposer = new Disposable();
-    disposer.addDispose(init());
 
     return () => {
-      disposer.dispose();
+      isMount = false;
+      keymapChangesDisposer.dispose();
     };
   }, []);
 
