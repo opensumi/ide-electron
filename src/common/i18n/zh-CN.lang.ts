@@ -1,14 +1,14 @@
 export const localizationBundle = {
-  languageId: 'en-US',
-  languageName: 'English',
-  localizedLanguageName: 'English',
+  languageId: 'zh-CN',
+  languageName: 'Chinese',
+  localizedLanguageName: '中文(中国)',
   contents: {
-    'common.about': 'About',
-    'common.preferences': 'Preferences',
+    'common.about': '关于',
+    'common.preferences': '首选项',
 
-    'custom.quick_open': 'Quick Open',
-    'custom.command_palette': 'Command Palette',
-    'custom.terminal_panel': 'Switch to Terminal Panel',
-    'custom.search_panel': 'Switch to Search Panel',
+    'custom.quick_open': '转到文件',
+    'custom.command_palette': '显示所有命令',
+    'custom.terminal_panel': '切换终端',
+    'custom.search_panel': '切换搜索面板',
   },
-}
+};
