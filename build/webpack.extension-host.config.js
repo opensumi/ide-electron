@@ -1,5 +1,6 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
+const { ProvidePlugin } = require('webpack');
 const { createConfig } = require('./webpack.base.config');
 
 const tsConfigPath = path.join(__dirname, '../tsconfig.json');
@@ -80,8 +81,15 @@ const workerTarget = createConfig({
       global: false,
       util: false,
       crypto: false,
+      buffer: require.resolve('buffer/'),
     },
   },
+  plugins: [
+    new ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+      process: 'process/browser',
+    }),
+  ],
   module: {
     // https://github.com/webpack/webpack/issues/196#issuecomment-397606728
     exprContextCritical: false,
