@@ -6,6 +6,7 @@ import { isOSX, URI } from '@opensumi/ide-core-common';
 import { MainModule } from './services';
 import { OpenSumiDesktopMainModule } from './module';
 import { WebviewElectronMainModule } from '@opensumi/ide-webview/lib/electron-main';
+import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
 const getResourcesPath = () => {
   const appPath = app.getAppPath();
@@ -41,6 +42,14 @@ export async function launch(workspace?: string) {
   console.log('workspace', workspace);
 
   await Promise.all([electronApp.init(), app.whenReady(), ensureDir(getExtensionDir())]);
+
+  await installExtension(REACT_DEVELOPER_TOOLS, {
+    loadExtensionOptions: { allowFileAccess: true },
+    forceDownload: true,
+  })
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .then(() => {})
+    .catch((err) => console.error('An error occurred: ', err));
 
   if (!workspace || !existsSync(workspace)) {
     if (electronApp.getCodeWindows().length === 0) {
