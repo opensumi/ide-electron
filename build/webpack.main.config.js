@@ -44,7 +44,7 @@ module.exports = createConfig({
     ],
   },
   externals: [
-    function (context, request, callback) {
+    ({ context, request }, callback) => {
       if (['node-pty', 'nsfw', 'spdlog', 'electron', 'vm2'].indexOf(request) !== -1) {
         return callback(null, 'commonjs ' + request);
       }

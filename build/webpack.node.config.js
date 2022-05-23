@@ -43,7 +43,7 @@ module.exports = createConfig({
     ],
   },
   externals: [
-    function (context, request, callback) {
+    ({ context, request }, callback) => {
       if (
         ['node-pty', 'nsfw', 'spdlog', '@opensumi/vscode-ripgrep', 'vm2', 'keytar', 'vertx'].indexOf(request) !== -1
       ) {

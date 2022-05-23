@@ -45,7 +45,7 @@ const nodeTarget = createConfig({
     ],
   },
   externals: [
-    function (context, request, callback) {
+    ({ context, request }, callback) => {
       if (['node-pty', 'nsfw', 'spdlog', 'vm2'].indexOf(request) !== -1) {
         return callback(null, 'commonjs ' + request);
       }
@@ -112,7 +112,7 @@ const workerTarget = createConfig({
     ],
   },
   externals: [
-    function (context, request, callback) {
+    ({ context, request }, callback) => {
       if (['node-pty', 'nsfw', 'spdlog', 'vm2', 'yargs'].indexOf(request) !== -1) {
         return callback(null, 'commonjs ' + request);
       }
