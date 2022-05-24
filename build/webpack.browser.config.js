@@ -16,6 +16,7 @@ module.exports = createConfig({
   output: {
     filename: 'bundle.js',
     path: distDir,
+    assetModuleFilename: 'assets/[name][ext]',
   },
   externalsPresets: {
     node: true,
@@ -38,7 +39,7 @@ module.exports = createConfig({
       },
       {
         test: /\.png$/,
-        use: 'file-loader',
+        type: 'asset/resource',
       },
       {
         test: /\.css$/,
@@ -53,9 +54,12 @@ module.exports = createConfig({
           {
             loader: 'css-loader',
             options: {
+              importLoaders: 0,
               sourceMap: true,
-              modules: true,
-              localIdentName: '[local]___[hash:base64:5]',
+              esModule: false,
+              modules: {
+                localIdentName: '[local]___[hash:base64:5]',
+              },
             },
           },
           {
@@ -76,6 +80,10 @@ module.exports = createConfig({
           },
           {
             loader: 'css-loader',
+            options: {
+              importLoaders: 0,
+              esModule: false,
+            },
           },
           {
             loader: 'less-loader',
@@ -89,15 +97,10 @@ module.exports = createConfig({
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name][contenthash].[ext]',
-              outputPath: 'fonts/',
-            },
-          },
-        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[hash][ext]',
+        },
       },
     ],
   },
