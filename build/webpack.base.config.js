@@ -10,7 +10,7 @@ const createConfig =
   (config, expect = {}) =>
   (env, argv) => {
     const mode = argv.mode || 'development';
-    const devtool = expect['devtool'] ?? 'source-map';
+    const devtool = expect['devtool'] ? 'source-map' : false;
 
     return {
       mode,
