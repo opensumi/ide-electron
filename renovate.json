@@ -10,8 +10,5 @@
       "excludePackagePatterns": ["^@opensumi/ide-"],
       "enabled": false
     }
-  ],
-  "pin": {
-    "enabled": false
-  }
+  ]
 }
