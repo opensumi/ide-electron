@@ -1,12 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"], 
+  "timezone": "Asia/Shanghai",
   "packageRules": [
     {
-      "matchPackageNames": ["opensumi"],
-      "matchPackagePatterns": ["^@opensumi/"],
+      "matchPackagePatterns": ["^@opensumi/ide-"],
       "groupName": ["opensumi packages"],
-      "addLabels": ["OpenSumi Version"]
+      "addLabels": ["OpenSumi Version"],
+      "prTitle": "{{semanticPrefix}}{{#if isPin}}Pin{{else}}Update{{/if}} OpenSumi {{depName}} to version {{newVersion}} 🌟"
     }
   ]
 }
