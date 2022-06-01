@@ -8,9 +8,10 @@
     {
       "packagePatterns": ["*"],
       "excludePackagePatterns": ["^@opensumi/ide-"],
-      "enabled": false,
-      "addLabels": ["OpenSumi Version"],
-      "commitMessage": "{{semanticPrefix}}{{#if isPin}}Pin{{else}}Update{{/if}} `@opensumi/ide-` to version {{newVersion}} 🌟"
+      "enabled": false
     }
-  ]
+  ],
+  "pin": {
+    "enabled": false
+  }
 }
