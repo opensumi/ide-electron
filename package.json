@@ -92,7 +92,7 @@
     "@opensumi/ide-storage": "2.18.0",
     "@opensumi/ide-task": "2.18.0",
     "@opensumi/ide-terminal-next": "2.18.0",
-    "@opensumi/ide-testing": "^2.16.10",
+    "@opensumi/ide-testing": "2.18.0",
     "@opensumi/ide-theme": "2.18.0",
     "@opensumi/ide-toolbar": "2.18.0",
     "@opensumi/ide-userstorage": "2.18.0",
