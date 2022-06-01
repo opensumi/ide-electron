@@ -3,12 +3,12 @@
   "extends": ["config:base"], 
   "timezone": "Asia/Shanghai",
   "enabledManagers": ["npm"],
+  "groupName": "opensumi packages",
   "packageRules": [
     {
       "packagePatterns": ["*"],
       "excludePackagePatterns": ["^@opensumi/ide-"],
       "enabled": false,
-      "groupName": ["opensumi packages"],
       "addLabels": ["OpenSumi Version"],
       "commitMessage": "{{semanticPrefix}}{{#if isPin}}Pin{{else}}Update{{/if}} `@opensumi/ide-` to version {{newVersion}} 🌟"
     }
