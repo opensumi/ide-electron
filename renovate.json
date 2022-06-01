@@ -8,7 +8,7 @@
       "matchPackagePatterns": ["^@opensumi/ide-"],
       "groupName": ["opensumi packages"],
       "addLabels": ["OpenSumi Version"],
-      "prTitle": "{{semanticPrefix}}{{#if isPin}}Pin{{else}}Update{{/if}} OpenSumi {{depName}} to version {{newVersion}} 🌟"
+      "prTitle": "{{semanticPrefix}}{{#if isPin}}Pin{{else}}Update{{/if}} `@opensumi/ide-` to version {{newVersion}} 🌟"
     }
   ]
 }
