@@ -13,7 +13,7 @@ import { KeybindingView } from '@opensumi/ide-quick-open/lib/browser/components/
 import { QUICK_OPEN_COMMANDS } from '@opensumi/ide-quick-open/lib/common';
 import { localize, registerLocalizationBundle } from '@opensumi/ide-core-common';
 import { IKeymapService } from '@opensumi/ide-keymaps/lib/common/keymaps';
-import { ThrottledDelayer } from '@opensumi/ide-core-common/lib/async';
+import { ThrottledDelayer } from '@opensumi/ide-core-common';
 
 import styles from './editor-empty-component.module.less';
 
