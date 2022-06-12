@@ -273,12 +273,8 @@
     ],
     "ms-vscode": [
       {
-        "name": "node-debug",
-        "version": "1.38.4"
-      },
-      {
-        "name": "node-debug2",
-        "version": "1.42.7"
+        "name": "js-debug",
+        "version": "1.68.0"
       }
     ],
     "vscode-icons-team": [

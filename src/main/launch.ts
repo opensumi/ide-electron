@@ -43,13 +43,14 @@ export async function launch(workspace?: string) {
 
   await Promise.all([electronApp.init(), app.whenReady(), ensureDir(getExtensionDir())]);
 
-  await installExtension(REACT_DEVELOPER_TOOLS, {
-    loadExtensionOptions: { allowFileAccess: true },
-    forceDownload: true,
-  })
-    .then((name) => console.log(`Added Extension:  ${name}`))
-    .then(() => {})
-    .catch((err) => console.error('An error occurred: ', err));
+  if (process.env.OPENSUMI_DEVTOOLS === 'true') {
+    await installExtension(REACT_DEVELOPER_TOOLS, {
+      loadExtensionOptions: { allowFileAccess: true },
+      forceDownload: true,
+    })
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((err) => console.error('An error occurred: ', err));
+  }
 
   if (!workspace || !existsSync(workspace)) {
     if (electronApp.getCodeWindows().length === 0) {
