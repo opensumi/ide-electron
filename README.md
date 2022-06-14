@@ -10,10 +10,10 @@ English | [中文文档](https://opensumi.com/zh/docs/integrate/quick-start/elec
 git clone git@github.com:opensumi/ide-electron.git
 cd ide-electron
 yarn
-yarn run build
-yarn run rebuild-native -- --force-rebuild=true
-yarn run download-extension # install extension (Optional)
-yarn run start
+yarn build
+yarn rebuild-native -- --force-rebuild=true
+yarn download-extension # install extension (Optional)
+yarn start
 ```
 
 ## Develop
@@ -21,8 +21,8 @@ yarn run start
 Start application:
 
 ```shell
-yarn run watch
-yarn run start
+yarn watch
+yarn start
 ```
 
 When there are new changes in the code, open the command panel in the editor <kbd>shift</kbd>+<kbd>command</kbd>+<kbd>p</kbd>, select and run the 'Reload Window' to reload the current editor window.
@@ -32,5 +32,5 @@ When there are new changes in the code, open the command panel in the editor <kb
 package the project, and the installation package in the `out` directory:
 
 ```shell
-yarn run pack
+yarn pack
 ```
