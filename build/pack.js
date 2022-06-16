@@ -8,7 +8,7 @@ const path = require('path');
 const electronBuilder = require('electron-builder');
 const rootPackage = require('../package.json');
 const rimraf = require('rimraf');
-const DEFAULT_TARGET_PLATFORM = 'darwin';
+const DEFAULT_TARGET_PLATFORM = process.platform;
 // x64 arm64 全部值见 {electronBuilder.Arch}
 const TARGET_ARCH = process.env.TARGET_ARCHES || 'x64';
 
