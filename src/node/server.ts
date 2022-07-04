@@ -42,6 +42,7 @@ function getServerAppOpts() {
       marketplace: {
         showBuiltinExtensions: true,
         ...newOpts.marketplace,
+        ...opts.marketplace,
       },
     };
   } catch (error) {}
