@@ -10,8 +10,6 @@ import { IHelloService } from '../../common/types';
 @Injectable()
 export class HelloService extends ElectronMainApiProvider implements IHelloService {
   async hello() {
-    // console.log('-------------------------- hello service. ---------------------');
-
     this.eventEmitter.fire('hello-event', {
       content: 'from main process.',
     });

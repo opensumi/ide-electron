@@ -4,6 +4,8 @@ export const Constants = {
   ELECTRON_NODE_SERVICE_PATH: 'opensumi-electron-node-service-path',
 
   DATA_FOLDER: process.env.DATA_FOLDER || '.sumi',
+
+  DEFAULT_BACKGROUND: 'rgb(32, 34, 36)',
 };
 
 export const Commands = {
