@@ -32,5 +32,5 @@ When there are new changes in the code, open the command panel in the editor <kb
 package the project, and the installation package in the `out` directory:
 
 ```shell
-yarn pack
+yarn run pack
 ```

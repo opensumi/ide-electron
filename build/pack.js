@@ -74,5 +74,15 @@ electronBuilder.build({
         },
       ],
     },
+    linux: {
+      artifactName: '${productName}-${version}.${ext}',
+      icon: 'build/icon/sumi.png',
+      target: [
+        {
+          target: 'deb',
+          arch: ['x64'],
+        },
+      ],
+    },
   },
 });
