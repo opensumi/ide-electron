@@ -46,7 +46,7 @@ const nodeTarget = createConfig({
   },
   externals: [
     ({ context, request }, callback) => {
-      if (['node-pty', 'nsfw', 'spdlog', 'vm2'].indexOf(request) !== -1) {
+      if (['node-pty', 'nsfw', 'spdlog', 'vm2', 'keytar'].indexOf(request) !== -1) {
         return callback(null, 'commonjs ' + request);
       }
       callback();
