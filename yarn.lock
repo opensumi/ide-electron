@@ -233,13 +233,6 @@
   dependencies:
     reflect-metadata "^0.1.13"
 
-"@opensumi/di@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.npmmirror.com/@opensumi/di/-/di-1.5.0.tgz#d1d4b3ffe80d4fc88faab1915f67bb0542746104"
-  integrity sha512-9yiVpf6HpgaWb1KYr1Ly6eUlp7lYaQ42lniNk8pA/Ei110t0yaUKARSPSgvA98J0Cc8GiTqfW9FnD0bRVFanAw==
-  dependencies:
-    reflect-metadata "^0.1.13"
-
 "@opensumi/ide-addons@2.18.9":
   version "2.18.9"
   resolved "https://registry.npmmirror.com/@opensumi/ide-addons/-/ide-addons-2.18.9.tgz#3f0220e46f2ae461c599093265659be940c0f041"
