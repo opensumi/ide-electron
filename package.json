@@ -24,7 +24,7 @@
     "watch:main": "webpack --config ./build/webpack.main.config.js -w --mode=development",
     "watch:webview": "webpack --config ./build/webpack.webview.config.js -w --mode=development",
     "watch": "run-p 'watch:*'",
-    "build": "rimraf -rf ./app && rimraf -rf ./out && run-p 'build:*'",
+    "build": "rimraf -rf ./app && rimraf -rf ./out && run-p build:browser build:node build:extension build:main build:webview",
     "build-prod": "rimraf -rf ./app && rimraf -rf ./out && run-p 'build-prod:*'",
     "pack:x64": "npm run build && TARGET_ARCHES=x64 node build/pack.js",
     "pack:arm64": "npm run build && TARGET_ARCHES=arm64 node build/pack.js",
