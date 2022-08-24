@@ -24,8 +24,8 @@ jobs:
 
       - name: Package Electron
         run: |
-          npm i
-          npm run pack
+          pnpm install
+          pnpm pack
         env:
           TARGET_PLATFORMS: darwin
 

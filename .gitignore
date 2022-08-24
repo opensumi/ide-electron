@@ -94,3 +94,5 @@ app
 
 out-x64
 out-arm64
+
+.DS_Store

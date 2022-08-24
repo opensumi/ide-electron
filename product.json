@@ -4,9 +4,7 @@
   "dataFolderName": ".sumi-oss",
   "version": "1.3.6",
   "urlProtocol": "sumi-oss",
-  "serverApp": {
-    "marketplace": {}
-  },
+  "serverApp": { "marketplace": {} },
   "devtoolFrontendUrl": "",
   "sumiVersion": "2.18.9"
 }
