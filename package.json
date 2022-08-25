@@ -6,7 +6,6 @@
   "scripts": {
     "start": "electron --inspect=9229 .",
     "start:no-dev": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "link-local": "node ./scripts/link-local.js",
     "build:browser": "webpack --config ./build/webpack.browser.config.js ",
     "build:node": "webpack --config ./build/webpack.node.config.js ",
@@ -26,10 +25,10 @@
     "watch": "run-p 'watch:*'",
     "build": "rimraf -rf ./app && rimraf -rf ./out && run-p build:browser build:node build:extension build:main build:webview",
     "build-prod": "rimraf -rf ./app && rimraf -rf ./out && run-p 'build-prod:*'",
-    "pack:x64": "npm run build && TARGET_ARCHES=x64 node build/pack.js",
-    "pack:arm64": "npm run build && TARGET_ARCHES=arm64 node build/pack.js",
-    "pack:all": "npm run pack:arm64 && npm run pack:x64",
-    "pack": "npm run build-prod && node build/pack.js",
+    "pack:x64": "pnpm build && TARGET_ARCHES=x64 node build/pack.js",
+    "pack:arm64": "pnpm build && TARGET_ARCHES=arm64 node build/pack.js",
+    "pack:all": "pnpm pack:arm64 && pnpm pack:x64",
+    "pack": "pnpm build-prod && node build/pack.js",
     "rebuild-native": "node ./scripts/rebuild-native.js --target=electron",
     "download-extension": "cross-env DEBUG=InstallExtension node scripts/download-extensions.js",
     "prepare": "husky install"
@@ -124,6 +123,7 @@
     "mobx": "^5.9.4",
     "mobx-react-lite": "^1.3.1",
     "node-fetch": "^2.6.1",
+    "node-gyp": "^9.1.0",
     "npm-run": "^5.0.1",
     "npm-run-all": "^4.1.5",
     "null-loader": "^4.0.1",
@@ -143,6 +143,17 @@
     "webpack-cli": "^4.9.1"
   },
   "peerDependencies": {
-    "@opensumi/di": "*"
+    "@opensumi/di": "*",
+    "node-gyp": "*"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "react"
+      ],
+      "allowedVersions": {
+        "node-gyp": "*"
+      }
+    }
   }
 }

@@ -53,9 +53,9 @@ jobs:
           node ./scripts/apply-product.js
           echo "package.json:\n" && cat package.json
           echo "./build/package.json\n" && cat ./build/package.json
-          yarn
-          yarn download-extension
-          yarn pack:all
+          pnpm
+          pnpm download-extension
+          pnpm pack:all
         env:
           SUMI_VERSION: ${{ github.event.inputs.sumiVersion }}
           PRODUCT_VERSION: ${{ github.event.inputs.productVersion }}
