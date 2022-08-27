@@ -3,12 +3,12 @@ import { join } from 'path';
 import { app } from 'electron';
 import { existsSync, statSync, ensureDir } from 'fs-extra';
 import { ElectronMainApp } from '@opensumi/ide-core-electron-main';
-import { isOSX, StorageProvider, STORAGE_NAMESPACE, URI } from '@opensumi/ide-core-common';
+import { isOSX, URI } from '@opensumi/ide-core-common';
 import { MainModule } from './services';
 import { OpenSumiDesktopMainModule } from './module';
 import { WebviewElectronMainModule } from '@opensumi/ide-webview/lib/electron-main';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
-import { Autowired, Injectable, Injector, INJECTOR_TOKEN } from '@opensumi/di';
+import { Injector } from '@opensumi/di';
 import { IMainStorageService } from 'common/types';
 import { MainStorageService } from './services/storage';
 import { Constants } from 'common/constants';
@@ -86,31 +86,36 @@ export async function launch(workspace?: string) {
       .catch((err) => console.error('An error occurred: ', err));
   }
 
+  const codeWindows = electronApp.getCodeWindows();
+
   if (!workspace || !existsSync(workspace)) {
-    if (electronApp.getCodeWindows().length === 0) {
-      electronApp.loadWorkspace(undefined, undefined);
-    } else {
-      electronApp.getCodeWindows()[1].getBrowserWindow().show();
+    if (codeWindows[1]) {
+      return codeWindows[1].getBrowserWindow().show();
     }
-  } else {
-    const s = statSync(workspace);
-    if (s.isDirectory()) {
-      const workspaceURI = URI.file(workspace);
-      for (const window of electronApp.getCodeWindows()) {
-        if (window.workspace && window.workspace.isEqual(workspaceURI)) {
-          window.getBrowserWindow().show();
-          return;
-        }
-      }
-      electronApp.loadWorkspace(workspaceURI.toString(), undefined);
-    } else {
-      const file = workspace;
-      if (electronApp.getCodeWindows().length > 0) {
-        electronApp.getCodeWindows()[0].getBrowserWindow().focus();
-        electronApp.getCodeWindows()[0].getBrowserWindow().webContents.send('openFile', file);
-      } else {
-        electronApp.loadWorkspace(undefined, { launchToOpenFile: file });
-      }
-    }
+
+    electronApp.loadWorkspace(undefined, undefined);
+    return;
   }
+
+  const workspaceStat = statSync(workspace);
+  if (workspaceStat.isDirectory()) {
+    const workspaceURI = URI.file(workspace);
+
+    for (const window of codeWindows) {
+      if (window.workspace?.isEqual(workspaceURI)) {
+        return window.getBrowserWindow().show();
+      }
+    }
+
+    electronApp.loadWorkspace(workspaceURI.toString(), undefined);
+    return;
+  }
+
+  if (codeWindows.length) {
+    codeWindows[0].getBrowserWindow().focus();
+    codeWindows[0].getBrowserWindow().webContents.send('openFile', workspace);
+    return;
+  }
+
+  electronApp.loadWorkspace(undefined, { launchToOpenFile: workspace });
 }

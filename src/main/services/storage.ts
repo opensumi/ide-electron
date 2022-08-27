@@ -16,17 +16,13 @@ export interface StorageChange {
   data: string;
 }
 
-export interface StringKeyToAnyValue {
-  [key: string]: any;
-}
-
 const STORAGE_DIR_NAME = '';
 
 @Injectable()
 export class MainStorageService implements IMainStorageService {
   public storageDirUri: URI | undefined;
 
-  public homeDir: string;
+  public homeDir = os.homedir();
 
   public _cache: any = {};
 
@@ -35,7 +31,6 @@ export class MainStorageService implements IMainStorageService {
   readonly onDidChange: Event<StorageChange> = this.onDidChangeEmitter.event;
 
   constructor() {
-    this.homeDir = os.homedir();
     this.storageDirUri = URI.file(this.homeDir).resolve(Constants.DATA_FOLDER).resolve(STORAGE_DIR_NAME);
   }
 
@@ -53,8 +48,7 @@ export class MainStorageService implements IMainStorageService {
 
     await ensureDir(this.storageDirUri.codeUri.fsPath);
 
-    const storagePath = this.storageDirUri.resolve(`${storageName}.json`).codeUri.fsPath;
-    return storagePath;
+    return this.storageDirUri.resolve(`${storageName}.json`).codeUri.fsPath;
   }
 
   getStoragePathSync(storageName: string): string {
@@ -64,8 +58,7 @@ export class MainStorageService implements IMainStorageService {
 
     ensureDirSync(this.storageDirUri.codeUri.fsPath);
 
-    const storagePath = this.storageDirUri.resolve(`${storageName}.json`).codeUri.fsPath;
-    return storagePath;
+    return this.storageDirUri.resolve(`${storageName}.json`).codeUri.fsPath;
   }
 
   async getItem(storageName: string): Promise<any> {
@@ -135,11 +128,9 @@ export class MainStorageService implements IMainStorageService {
       return;
     }
 
-    try {
-      await fse.writeFile(storagePath, JSON.stringify(value));
-    } catch (error) {
+    await fse.writeFile(storagePath, JSON.stringify(value)).catch((error) => {
       console.error(`${storagePath} write data fail: ${error.stack}`);
-    }
+    });
 
     const change: StorageChange = {
       path: URI.parse(storagePath).toString(),
