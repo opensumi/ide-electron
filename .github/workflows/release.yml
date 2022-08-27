@@ -22,6 +22,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        with:
+          version: 7
+
       - name: Package Electron
         run: |
           pnpm install

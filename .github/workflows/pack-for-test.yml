@@ -47,6 +47,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
 
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        with:
+          version: 7
+
       # 安装依赖并构建
       - name: Install dependencies & Pack
         run: |
