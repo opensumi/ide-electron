@@ -9,7 +9,7 @@ English | [中文文档](https://opensumi.com/zh/docs/integrate/quick-start/elec
 ```shell
 git clone git@github.com:opensumi/ide-electron.git
 cd ide-electron
-pnpm
+pnpm i
 pnpm build
 pnpm rebuild-native -- --force-rebuild=true
 pnpm download-extension # install extension (Optional)
