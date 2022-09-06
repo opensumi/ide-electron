@@ -36,6 +36,10 @@ function saveProductJson() {
 
 function applySumiVersion() {
   const { sumiVersion } = require('../product.json');
+  // cancel if sumiVersion not specified
+  if (!sumiVersion) {
+    return;
+  }
 
   const package = require('../package.json');
   const devDependencies = package['devDependencies'];

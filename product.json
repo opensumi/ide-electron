@@ -6,5 +6,5 @@
   "urlProtocol": "sumi-oss",
   "serverApp": { "marketplace": {} },
   "devtoolFrontendUrl": "",
-  "sumiVersion": "2.18.9"
+  "sumiVersion": ""
 }
