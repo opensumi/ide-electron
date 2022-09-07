@@ -12,6 +12,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
+
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        with:
+          version: 7
+
       - name: Run CI
         run: |
           pnpm install
