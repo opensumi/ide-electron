@@ -6,8 +6,9 @@ const argv = require('yargs').argv;
 
 const nativeModules = [
   join(__dirname, '../node_modules/node-pty'),
-  join(__dirname, '../node_modules/nsfw'),
+  join(__dirname, '../node_modules/@parcel/watcher'),
   join(__dirname, '../node_modules/spdlog'),
+  join(__dirname, '../node_modules/keytar'),
 ];
 
 let version;
