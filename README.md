@@ -16,6 +16,12 @@ pnpm download-extension # install extension (Optional)
 pnpm start
 ```
 
+to use the China CDN mirror, checkout branch `main-cn`:
+
+```shell
+git checkout main-cn
+```
+
 ## Develop
 
 Start application:
