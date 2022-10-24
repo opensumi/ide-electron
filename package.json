@@ -1,6 +1,7 @@
 {
   "name": "ide-electron",
   "private": true,
+  "version": "1.0.0",
   "description": "OpenSumi IDE Electron 示例项目",
   "main": "./app/main/index.js",
   "scripts": {

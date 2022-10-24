@@ -56,8 +56,8 @@ jobs:
       - name: Install dependencies & Pack
         run: |
           node ./scripts/apply-product.js
-          echo "\rpackage.json:" && cat package.json
-          echo "\r./build/package.json" && cat ./build/package.json
+          echo "package.json:" && cat package.json
+          echo "./build/package.json" && cat ./build/package.json
           pnpm i --no-frozen-lockfile
           pnpm download-extension
           pnpm pack
