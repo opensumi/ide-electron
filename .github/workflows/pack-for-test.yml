@@ -56,9 +56,9 @@ jobs:
       - name: Install dependencies & Pack
         run: |
           node ./scripts/apply-product.js
-          echo "package.json:\n" && cat package.json
-          echo "./build/package.json\n" && cat ./build/package.json
-          pnpm
+          echo "package.json:" && cat package.json
+          echo "./build/package.json" && cat ./build/package.json
+          pnpm i
           pnpm download-extension
           pnpm pack:all
         env:
