@@ -60,7 +60,7 @@ jobs:
           echo "./build/package.json" && cat ./build/package.json
           pnpm i --no-frozen-lockfile
           pnpm download-extension
-          pnpm pack
+          pnpm run pack
         env:
           SUMI_VERSION: ${{ github.event.inputs.sumiVersion }}
           PRODUCT_VERSION: ${{ github.event.inputs.productVersion }}
