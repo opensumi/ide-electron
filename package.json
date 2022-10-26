@@ -40,12 +40,7 @@
   },
   "license": "MIT",
   "resolutions": {
-    "requestretry": "6.0.0",
-    "xterm": "5.0.0",
-    "xterm-addon-fit": "0.6.0",
-    "xterm-addon-search": "0.10.0",
-    "xterm-addon-webgl": "0.13.0",
-    "xterm-addon-canvas": "0.2.0"
+    "requestretry": "6.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,md,html,css,less,json}": "prettier --write",
