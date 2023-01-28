@@ -32,7 +32,7 @@ if (targetPlatforms.includes('darwin')) {
   targets.set(electronBuilder.Platform.MAC, archMap);
 }
 
-const outputPath = path.join(__dirname, `../out-${TARGET_ARCH}`);
+const outputPath = path.join(__dirname, '../out');
 rimraf.sync(outputPath);
 
 electronBuilder.build({
