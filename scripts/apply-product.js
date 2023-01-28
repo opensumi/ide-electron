@@ -28,7 +28,12 @@ function saveProductJson() {
     productJson['sumiVersion'] = String(process.env.SUMI_VERSION).trim();
   }
   if (process.env.PRODUCT_VERSION) {
-    productJson['version'] = String(process.env.PRODUCT_VERSION).trim();
+    let _version = String(process.env.PRODUCT_VERSION).trim();
+    if (_version.startsWith('v')) {
+      // transform tag version eg. v1.3.6 to 1.3.6
+      _version = _version.substring(1);
+    }
+    productJson['version'] = _version;
   }
   const jsonPath = path.join(__dirname, '../product.json');
   saveWithPrettier(jsonPath, productJson);
