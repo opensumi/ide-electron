@@ -1,5 +1,6 @@
-import { ClientApp, IClientAppOpts, electronEnv, URI } from '@opensumi/ide-core-browser';
+import { IClientAppOpts, electronEnv, URI } from '@opensumi/ide-core-browser';
 import { Injector } from '@opensumi/di';
+import { ClientApp } from '@opensumi/ide-core-browser/lib/bootstrap/app';
 import { createSocketConnection } from '@opensumi/ide-connection/lib/node';
 
 // 引入公共样式文件
