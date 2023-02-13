@@ -48,7 +48,7 @@ if (target === 'electron') {
       '--openssl_fips=X',
       `--target=${version}`,
       `--arch=${arch}`,
-      '--dist-url=https://electronjs.org/headers',
+      '--dist-url=https://cdn.npmmirror.com/binaries/electron',
     ];
   } else {
     commands = [
@@ -59,7 +59,7 @@ if (target === 'electron') {
       '--openssl_fips=X',
       `--target=${version}`,
       `--arch=${arch}`,
-      '--dist-url=https://electronjs.org/headers',
+      '--dist-url=https://cdn.npmmirror.com/binaries/electron',
     ];
   }
 } else if (target === 'node') {
