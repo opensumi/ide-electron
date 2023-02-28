@@ -24,11 +24,14 @@ const DEFAULT_CHANGE_DELAY = 500; // ms
  * @param param0
  * @returns
  */
-const ShortcutRow = ({ key, label, keybinding }: { key: string; label: string; keybinding: Keybinding }) => (
-  <dl className={styles.shortcutRow} key={key}>
-    <span className={styles.label}>{label}</span>
-    <KeybindingView keybinding={keybinding} className={styles.keybinding} />
-  </dl>
+const ShortcutRow = useMemo(
+  ({ key, label, keybinding }: { key: string; label: string; keybinding: Keybinding }) => (
+    <dl className={styles.shortcutRow} key={key}>
+      <span className={styles.label}>{label}</span>
+      <KeybindingView keybinding={keybinding} className={styles.keybinding} />
+    </dl>
+  ),
+  [],
 );
 
 /**
@@ -103,7 +106,11 @@ export const EditorEmptyComponent = () => {
     return (
       <div className={styles.shortcutPanel}>
         {keyInfos.map((keyInfo) => (
-          <ShortcutRow key={keyInfo.command} label={keyInfo.label} keybinding={keyInfo.keybinding}></ShortcutRow>
+          <ShortcutRow
+            key={keyInfo.command}
+            label={keyInfo.label}
+            keybinding={keyInfo.keybinding as Keybinding}
+          ></ShortcutRow>
         ))}
       </div>
     );
