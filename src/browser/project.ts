@@ -62,7 +62,7 @@ export class ProjectSwitcherContribution
     });
   }
 
-  registerNextMenus(registry: IMenuRegistry) {
+  registerMenus(registry: IMenuRegistry) {
     registry.registerMenuItem(MenuId.MenubarFileMenu, {
       submenu: 'recentProjects',
       label: '最近项目',
@@ -73,11 +73,11 @@ export class ProjectSwitcherContribution
       registry.registerMenuItems(
         'recentProjects',
         workspaces.map((workspace) => ({
-            command: {
-              id: 'open.recent.' + workspace,
-              label: new URI(workspace).codeUri.fsPath,
-            },
-          })),
+          command: {
+            id: 'open.recent.' + workspace,
+            label: new URI(workspace).codeUri.fsPath,
+          },
+        })),
       );
     });
 
