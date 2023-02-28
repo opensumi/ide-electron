@@ -43,6 +43,9 @@ module.exports = createConfig({
     ],
   },
   externals: [
+    {
+      nsfw: 'nsfw',
+    },
     ({ context, request }, callback) => {
       if (
         ['node-pty', '@parcel/watcher', 'spdlog', '@opensumi/vscode-ripgrep', 'vm2', 'keytar', 'vertx'].indexOf(
