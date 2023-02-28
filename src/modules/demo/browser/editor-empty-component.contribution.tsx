@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMemo, useState, useEffect } from 'react';
+import { useState, useEffect, FC, useMemo } from 'react';
 import {
   Domain,
   ComponentContribution,
@@ -13,25 +13,23 @@ import { useInjectable } from '@opensumi/ide-core-browser/lib/react-hooks';
 import { KeybindingView } from '@opensumi/ide-quick-open/lib/browser/components/keybinding';
 import { localize } from '@opensumi/ide-core-common';
 import { IKeymapService } from '@opensumi/ide-keymaps/lib/common/keymaps';
-import { ThrottledDelayer } from '@opensumi/ide-core-common';
 
 import styles from './editor-empty-component.module.less';
-
-const DEFAULT_CHANGE_DELAY = 500; // ms
 
 /**
  * 单行快捷键信息
  * @param param0
  * @returns
  */
-const ShortcutRow = useMemo(
-  ({ key, label, keybinding }: { key: string; label: string; keybinding: Keybinding }) => (
-    <dl className={styles.shortcutRow} key={key}>
-      <span className={styles.label}>{label}</span>
-      <KeybindingView keybinding={keybinding} className={styles.keybinding} />
-    </dl>
-  ),
-  [],
+const ShortcutRow: FC<{
+  key: string;
+  label: string;
+  keybinding: Keybinding;
+}> = ({ key, label, keybinding }) => (
+  <dl className={styles.shortcutRow} key={key}>
+    <span className={styles.label}>{label}</span>
+    <KeybindingView keybinding={keybinding} className={styles.keybinding} />
+  </dl>
 );
 
 /**
@@ -44,7 +42,6 @@ export const EditorEmptyComponent = () => {
   const keybindingRegistry = useInjectable<KeybindingRegistry>(KeybindingRegistry);
   const keymapService = useInjectable<IKeymapService>(IKeymapService);
 
-  const keymapChangeDelayer = new ThrottledDelayer<void>(DEFAULT_CHANGE_DELAY);
   const getKeybinding = (commandId: string) => {
     const bindings = keybindingRegistry.getKeybindingsForCommand(commandId);
     if (!bindings.length) {
@@ -58,21 +55,10 @@ export const EditorEmptyComponent = () => {
   };
 
   useEffect(() => {
-    let isMount = true;
-
     // 监听快捷键是否有更新
-    const keymapChangesDisposer = keymapService.onDidKeymapChanges(() => {
-      keymapChangeDelayer.trigger(async () => {
-        if (isMount) {
-          setKeyMapLoaded(true);
-        }
-      });
+    keymapService.whenReady.then(() => {
+      setKeyMapLoaded(true);
     });
-
-    return () => {
-      isMount = false;
-      keymapChangesDisposer.dispose();
-    };
   }, []);
 
   const ShortcutView = useMemo(() => {
@@ -102,7 +88,7 @@ export const EditorEmptyComponent = () => {
         keybinding: getKeybinding(SEARCH_COMMANDS.OPEN_SEARCH.id),
       },
     ].filter((e) => e.keybinding);
-
+    console.log('keyInfos => ', keyInfos);
     return (
       <div className={styles.shortcutPanel}>
         {keyInfos.map((keyInfo) => (
@@ -117,6 +103,7 @@ export const EditorEmptyComponent = () => {
   }, [imgLoaded, keyMapLoaded]);
 
   const logoUri = 'https://img.alicdn.com/imgextra/i2/O1CN01dqjQei1tpbj9z9VPH_!!6000000005951-55-tps-87-78.svg';
+  console.log('loaded => ', logoUri);
   return (
     <div className={styles.empty_component}>
       <img src={logoUri} onLoad={() => setImgLoaded(true)} />
@@ -129,7 +116,7 @@ export const EditorEmptyComponent = () => {
 export class EditorEmptyComponentContribution implements ComponentContribution {
   registerComponent(registry: ComponentRegistry) {
     registry.register('editor-empty', {
-      id: 'editor-empty',
+      id: 'empty-component',
       component: EditorEmptyComponent,
       initialProps: {},
     });

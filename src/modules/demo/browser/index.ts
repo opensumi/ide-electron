@@ -12,7 +12,7 @@ export class DemoModule extends ElectronBasicModule {
       token: IHelloService,
       useValue: createElectronMainApi(IHelloService),
     },
-    // DemoContribution,
+    DemoContribution,
     EditorEmptyComponentContribution,
   ];
 }
