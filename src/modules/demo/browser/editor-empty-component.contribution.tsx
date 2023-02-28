@@ -88,7 +88,6 @@ export const EditorEmptyComponent = () => {
         keybinding: getKeybinding(SEARCH_COMMANDS.OPEN_SEARCH.id),
       },
     ].filter((e) => e.keybinding);
-    console.log('keyInfos => ', keyInfos);
     return (
       <div className={styles.shortcutPanel}>
         {keyInfos.map((keyInfo) => (
@@ -103,7 +102,6 @@ export const EditorEmptyComponent = () => {
   }, [imgLoaded, keyMapLoaded]);
 
   const logoUri = 'https://img.alicdn.com/imgextra/i2/O1CN01dqjQei1tpbj9z9VPH_!!6000000005951-55-tps-87-78.svg';
-  console.log('loaded => ', logoUri);
   return (
     <div className={styles.empty_component}>
       <img src={logoUri} onLoad={() => setImgLoaded(true)} />
