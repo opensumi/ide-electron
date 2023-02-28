@@ -24,7 +24,7 @@ const DEFAULT_CHANGE_DELAY = 500; // ms
  * @param param0
  * @returns
  */
-const ShortcutRow = ({ key, label, keybinding }: { key: string; label: string; keybinding: any }) => (
+const ShortcutRow = ({ key, label, keybinding }: { key: string; label: string; keybinding: Keybinding }) => (
   <dl className={styles.shortcutRow} key={key}>
     <span className={styles.label}>{label}</span>
     <KeybindingView keybinding={keybinding} className={styles.keybinding} />
