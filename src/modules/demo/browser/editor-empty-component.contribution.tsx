@@ -8,7 +8,7 @@ import {
   SEARCH_COMMANDS,
   QUICK_OPEN_COMMANDS,
 } from '@opensumi/ide-core-browser';
-import { KeybindingRegistry } from '@opensumi/ide-core-browser/lib/keybinding/keybinding';
+import { Keybinding, KeybindingRegistry } from '@opensumi/ide-core-browser/lib/keybinding/keybinding';
 import { useInjectable } from '@opensumi/ide-core-browser/lib/react-hooks';
 import { KeybindingView } from '@opensumi/ide-quick-open/lib/browser/components/keybinding';
 import { localize } from '@opensumi/ide-core-common';
@@ -24,7 +24,7 @@ const DEFAULT_CHANGE_DELAY = 500; // ms
  * @param param0
  * @returns
  */
-const ShortcutRow = ({ key, label, keybinding }: { key: string; label: string; keybinding: any }) => (
+const ShortcutRow = ({ key, label, keybinding }: { key: string; label: string; keybinding: Keybinding }) => (
   <dl className={styles.shortcutRow} key={key}>
     <span className={styles.label}>{label}</span>
     <KeybindingView keybinding={keybinding} className={styles.keybinding} />
