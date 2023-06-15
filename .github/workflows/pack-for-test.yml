@@ -47,20 +47,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
 
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        with:
-          version: 7
-
       # 安装依赖并构建
       - name: Install dependencies & Pack
         run: |
           node ./scripts/apply-product.js
           echo "package.json:" && cat package.json
           echo "./build/package.json" && cat ./build/package.json
-          pnpm i --no-frozen-lockfile
-          pnpm download-extension
-          pnpm run pack
+          yarn i
+          yarn download-extension
+          yarn run pack
         env:
           SUMI_VERSION: ${{ github.event.inputs.sumiVersion }}
           PRODUCT_VERSION: ${{ github.event.inputs.productVersion }}

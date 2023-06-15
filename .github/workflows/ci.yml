@@ -13,12 +13,7 @@ jobs:
         with:
           node-version: 14.x
 
-      - uses: pnpm/action-setup@v2.2.4
-        name: Install pnpm
-        with:
-          version: 7
-
       - name: Run CI
         run: |
-          pnpm install
-          pnpm build
+          yarn install
+          yarn build
