@@ -9,7 +9,7 @@ English | [中文文档](https://opensumi.com/zh/docs/integrate/quick-start/elec
 ```shell
 git clone git@github.com:opensumi/ide-electron.git
 cd ide-electron
-yarn i
+yarn
 yarn build
 yarn rebuild-native --force-rebuild=true
 yarn download-extension # install extension (Optional)
