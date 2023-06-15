@@ -1,4 +1,4 @@
-name: Pack a dmg for testing
+name: Pack dmg
 
 on:
   workflow_dispatch:
@@ -53,7 +53,7 @@ jobs:
           node ./scripts/apply-product.js
           echo "package.json:" && cat package.json
           echo "./build/package.json" && cat ./build/package.json
-          yarn i
+          yarn
           yarn download-extension
           yarn run pack
         env:
