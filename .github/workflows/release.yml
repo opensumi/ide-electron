@@ -22,19 +22,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        with:
-          version: 7
-
       - name: Package Electron
         run: |
           node ./scripts/apply-product.js
           echo "package.json:" && cat package.json
           echo "./build/package.json" && cat ./build/package.json
-          pnpm i --no-frozen-lockfile
-          pnpm download-extension
-          pnpm run pack
+          yarn
+          yarn download-extension
+          yarn pack
         env:
           TARGET_PLATFORMS: darwin
           TARGET_ARCHES: x64,arm64
