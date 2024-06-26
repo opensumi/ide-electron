@@ -1,7 +1,6 @@
 import { IClientAppOpts, electronEnv, URI } from '@opensumi/ide-core-browser';
 import { Injector } from '@opensumi/di';
 import { ClientApp } from '@opensumi/ide-core-browser/lib/bootstrap/app';
-import { createSocketConnection } from '@opensumi/ide-connection/lib/node';
 
 // 引入公共样式文件
 import '@opensumi/ide-core-browser/lib/style/index.less';
@@ -40,6 +39,5 @@ export async function renderApp(opts: IClientAppOpts) {
     injector.get(IElectronMainLifeCycleService).reloadWindow(electronEnv.currentWindowId);
   };
 
-  const netConnection = await (window as any).createRPCNetConnection();
-  app.start(document.getElementById('main')!, 'electron', createSocketConnection(netConnection));
+  app.start(document.getElementById('main')!, 'electron');
 }

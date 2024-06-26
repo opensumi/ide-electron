@@ -314,6 +314,33 @@
     "@opensumi/ide-core-common" "3.1.2"
     "@opensumi/ide-core-node" "3.1.2"
 
+"@opensumi/ide-ai-native@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@opensumi/ide-ai-native/-/ide-ai-native-3.1.2.tgz#5594891bfbd96a5e177f1f64d43ec1930ace132d"
+  integrity sha512-Q5gyHGe2dal4EZ7SjMJh5dzoKrD75XHeriDj5nLmnBmJfpfHFIIyyxfAdhTLxgVKHTrVNphb4u5GIgqGsM3SLw==
+  dependencies:
+    "@opensumi/ide-components" "3.1.2"
+    "@opensumi/ide-core-common" "3.1.2"
+    "@opensumi/ide-core-node" "3.1.2"
+    "@opensumi/ide-debug" "3.1.2"
+    "@opensumi/ide-design" "3.1.2"
+    "@opensumi/ide-editor" "3.1.2"
+    "@opensumi/ide-file-service" "3.1.2"
+    "@opensumi/ide-file-tree-next" "3.1.2"
+    "@opensumi/ide-main-layout" "3.1.2"
+    "@opensumi/ide-markers" "3.1.2"
+    "@opensumi/ide-menu-bar" "3.1.2"
+    "@opensumi/ide-monaco" "3.1.2"
+    "@opensumi/ide-overlay" "3.1.2"
+    "@opensumi/ide-terminal-next" "3.1.2"
+    "@opensumi/ide-theme" "3.1.2"
+    "@opensumi/ide-workspace" "3.1.2"
+    dom-align "^1.7.0"
+    js-tiktoken "1.0.12"
+    react-chat-elements "^12.0.10"
+    react-highlight "^0.15.0"
+    web-tree-sitter "0.22.6"
+
 "@opensumi/ide-comments@3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@opensumi/ide-comments/-/ide-comments-3.1.2.tgz#168b1e80609cbf69241c000d8b54dc43d758dc79"
@@ -446,6 +473,14 @@
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@opensumi/ide-decoration/-/ide-decoration-3.1.2.tgz#bf8e79ad2285772e146ad03d9ecd9653f2578e6e"
   integrity sha512-pmcqZr1iELjnl3/ajct0CNeEFKjkT7yzgSoPgmnMwiocBhd9R+dS4gtYp2GcnshA/VsYuRopp24Q519V3+lq8g==
+  dependencies:
+    "@opensumi/ide-core-common" "3.1.2"
+    "@opensumi/ide-core-node" "3.1.2"
+
+"@opensumi/ide-design@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@opensumi/ide-design/-/ide-design-3.1.2.tgz#888bab3a9135c4a822b6cc7b5da548b4a2da4669"
+  integrity sha512-v0WajBDvWwk4NL1oJpvS/HObHr+Twz36vOv0b8KpZgRTj5gGVoLrdEOWOZaldT59wIgDnJ0blTWyfixFeMnG2w==
   dependencies:
     "@opensumi/ide-core-common" "3.1.2"
     "@opensumi/ide-core-node" "3.1.2"
@@ -2053,7 +2088,7 @@ ci-info@^3.2.0:
   resolved "https://registry.npmmirror.com/ci-info/-/ci-info-3.8.0.tgz#81408265a5380c929f0bc665d62256628ce9ef91"
   integrity sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==
 
-classnames@2.5.1, classnames@^2.3.1:
+classnames@2.5.1, classnames@^2.2.3, classnames@^2.3.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
   integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
@@ -3379,6 +3414,11 @@ fs.realpath@^1.0.0:
   resolved "https://registry.npmmirror.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
 
+fsevents@^2.3.2:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
+  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
+
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmmirror.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
@@ -3708,6 +3748,11 @@ he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmmirror.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
+
+highlight.js@^10.5.0:
+  version "10.7.3"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.7.3.tgz#697272e3991356e40c3cac566a74eef681756531"
+  integrity sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==
 
 hosted-git-info@^2.1.4:
   version "2.8.9"
@@ -4203,6 +4248,13 @@ jest-worker@^27.4.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
+js-tiktoken@1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/js-tiktoken/-/js-tiktoken-1.0.12.tgz#af0f5cf58e5e7318240d050c8413234019424211"
+  integrity sha512-L7wURW1fH9Qaext0VzaUDpFGVQgjkdE3Dgsy9/+yXyGEpBKnylTd0mU0bfbNkKDlXRb6TEsZkwuflu1B8uQbJQ==
+  dependencies:
+    base64-js "^1.5.1"
+
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmmirror.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -4499,6 +4551,11 @@ loader-utils@^2.0.0:
     big.js "^5.2.2"
     emojis-list "^3.0.0"
     json5 "^2.1.2"
+
+loaders.css@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/loaders.css/-/loaders.css-0.1.2.tgz#3a9fb43726c73334a38142af9d0629019b658743"
+  integrity sha512-Rhowlq24ey1VOeor+3wYOt9+MjaxBOJm1u4KlQgNC3+0xJ0LS4wq4iG57D/BPzvuD/7HHDGQOWJ+81oR2EI9bQ==
 
 locate-path@^5.0.0:
   version "5.0.0"
@@ -4900,22 +4957,12 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.npmmirror.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-mobx-react-lite@^1.3.1:
-  version "1.5.2"
-  resolved "https://registry.npmmirror.com/mobx-react-lite/-/mobx-react-lite-1.5.2.tgz#c4395b0568b9cb16f07669d8869cc4efa1b8656d"
-  integrity sha512-PyZmARqqWtpuQaAoHF5pKX7h6TKNLwq6vtovm4zZvG6sEbMRHHSqioGXSeQbpRmG8Kw8uln3q/W1yMO5IfL5Sg==
-
 mobx-react-lite@^4.0.5:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-4.0.7.tgz#f4e21e18d05c811010dcb1d3007e797924c4d90b"
   integrity sha512-RjwdseshK9Mg8On5tyJZHtGD+J78ZnCnRaxeQDSiciKVQDUbfZcXhmld0VMxAwvcTnPEHZySGGewm467Fcpreg==
   dependencies:
     use-sync-external-store "^1.2.0"
-
-mobx@^5.9.4:
-  version "5.15.7"
-  resolved "https://registry.npmmirror.com/mobx/-/mobx-5.15.7.tgz#b9a5f2b6251f5d96980d13c78e9b5d8d4ce22665"
-  integrity sha512-wyM3FghTkhmC+hQjyPGGFdpehrcX1KOXsDuERhfK2YbJemkUhEB+6wzEN639T21onxlfYBmriA1PFnvxTUhcKw==
 
 mobx@^6.12.0:
   version "6.12.4"
@@ -5250,7 +5297,7 @@ oauth-sign@~0.9.0:
   resolved "https://registry.npmmirror.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
 
-object-assign@4.x, object-assign@^4.0.1, object-assign@^4.1.1:
+object-assign@4.x, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npmmirror.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==
@@ -5714,6 +5761,14 @@ progress@^2.0.3:
   resolved "https://registry.npmmirror.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
+progressbar.js@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/progressbar.js/-/progressbar.js-1.1.1.tgz#8c7dc52ce4cc8845c4f3055da75afc366a0543e9"
+  integrity sha512-FBsw3BKsUbb+hNeYfiP3xzvAAQrPi4DnGDw66bCmfuRCDLcslxyxv2GyYUdBSKFGSIBa73CUP5WMcl6F8AAXlw==
+  dependencies:
+    lodash.merge "^4.6.2"
+    shifty "^2.8.3"
+
 promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
@@ -5727,7 +5782,7 @@ promise-retry@^2.0.1:
     err-code "^2.0.2"
     retry "^0.12.0"
 
-prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmmirror.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -5990,6 +6045,17 @@ react-autosize-textarea@^7.0.0:
     line-height "^0.3.1"
     prop-types "^15.5.6"
 
+react-chat-elements@^12.0.10:
+  version "12.0.15"
+  resolved "https://registry.yarnpkg.com/react-chat-elements/-/react-chat-elements-12.0.15.tgz#4cdbb1c1a8d5081154a54dd9334eb130dc09da05"
+  integrity sha512-hE3Kty/HxVR3nR9aAe0UdWiK4vBDqifvpBZpfNxTEs+qwRy2SGn+HsulwK0MYyp/J0Lg9xe0+RomjSOZ4+OIzQ==
+  dependencies:
+    classnames "^2.2.5"
+    progressbar.js "^1.1.0"
+    react-icons "^4.3.1"
+    react-spinkit "^3.0.0"
+    timeago.js "^4.0.2"
+
 react-ctxmenu-trigger@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmmirror.com/react-ctxmenu-trigger/-/react-ctxmenu-trigger-1.0.1.tgz#5b1c91a93422d0cf0bf6d710337eb8f2788ce8af"
@@ -6010,16 +6076,6 @@ react-custom-scrollbars@^4.2.1:
     prop-types "^15.5.10"
     raf "^3.1.0"
 
-react-dom@^16.0.0:
-  version "16.14.0"
-  resolved "https://registry.npmmirror.com/react-dom/-/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
-  integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.19.1"
-
 react-dom@^18.2.0:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
@@ -6027,6 +6083,18 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
+
+react-highlight@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/react-highlight/-/react-highlight-0.15.0.tgz#66749d01969853327d499959558f9468330cd9d8"
+  integrity sha512-5uV/b/N4Z421GSVVe05fz+OfTsJtFzx/fJBdafZyw4LS70XjIZwgEx3Lrkfc01W/RzZ2Dtfb0DApoaJFAIKBtA==
+  dependencies:
+    highlight.js "^10.5.0"
+
+react-icons@^4.3.1:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.12.0.tgz#54806159a966961bfd5cdb26e492f4dafd6a8d78"
+  integrity sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==
 
 react-is@^16.12.0, react-is@^16.13.1:
   version "16.13.1"
@@ -6053,6 +6121,16 @@ react-mentions@^4.4.10:
     prop-types "^15.5.8"
     substyle "^9.1.0"
 
+react-spinkit@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-spinkit/-/react-spinkit-3.0.0.tgz#31fdaf4e18177766c57d1b1f3330290f8492a85a"
+  integrity sha512-RrfGRPjqxHQiy7quPqhjPynTu0zobgQaZu1QYBMpJJ6pCSRRRK16EZMaxdE6fLVYFRJWpX/eGATWLMoVFFT5uQ==
+  dependencies:
+    classnames "^2.2.3"
+    loaders.css "^0.1.2"
+    object-assign "^4.1.0"
+    prop-types "^15.5.8"
+
 react-virtualized-auto-sizer@^1.0.2:
   version "1.0.20"
   resolved "https://registry.npmmirror.com/react-virtualized-auto-sizer/-/react-virtualized-auto-sizer-1.0.20.tgz#d9a907253a7c221c52fa57dc775a6ef40c182645"
@@ -6073,15 +6151,6 @@ react-window@^1.8.5:
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
-
-react@^16.0.0:
-  version "16.14.0"
-  resolved "https://registry.npmmirror.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
-  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
 
 react@^18.2.0:
   version "18.3.1"
@@ -6379,14 +6448,6 @@ sax@^1.2.4:
   resolved "https://registry.npmmirror.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scheduler@^0.19.1:
-  version "0.19.1"
-  resolved "https://registry.npmmirror.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
-  integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-
 scheduler@^0.23.2:
   version "0.23.2"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.23.2.tgz#414ba64a3b282892e944cf2108ecc078d115cdc3"
@@ -6529,6 +6590,13 @@ shell-quote@^1.6.1:
   version "1.8.1"
   resolved "https://registry.npmmirror.com/shell-quote/-/shell-quote-1.8.1.tgz#6dbf4db75515ad5bac63b4f1894c3a154c766680"
   integrity sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==
+
+shifty@^2.8.3:
+  version "2.20.4"
+  resolved "https://registry.yarnpkg.com/shifty/-/shifty-2.20.4.tgz#fb2ec81697b808b250024fa9548b5b93fadd78cf"
+  integrity sha512-4Y0qRkg8ME5XN8yGNAwmFOmsIURGFKT9UQfNL6DDJQErYtN5HsjyoBuJn41ZQfTkuu2rIbRMn9qazjKsDpO2TA==
+  optionalDependencies:
+    fsevents "^2.3.2"
 
 side-channel@^1.0.4:
   version "1.0.4"
@@ -7031,6 +7099,11 @@ through@^2.3.8:
   resolved "https://registry.npmmirror.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
+timeago.js@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/timeago.js/-/timeago.js-4.0.2.tgz#724e8c8833e3490676c7bb0a75f5daf20e558028"
+  integrity sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w==
+
 tmp-promise@^3.0.2:
   version "3.0.3"
   resolved "https://registry.npmmirror.com/tmp-promise/-/tmp-promise-3.0.3.tgz#60a1a1cc98c988674fcbfd23b6e3367bdeac4ce7"
@@ -7434,6 +7507,11 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
+web-tree-sitter@0.22.6:
+  version "0.22.6"
+  resolved "https://registry.yarnpkg.com/web-tree-sitter/-/web-tree-sitter-0.22.6.tgz#0f47fa798a5cbe0c2293b813f51c3ddebf94abbe"
+  integrity sha512-hS87TH71Zd6mGAmYCvlgxeGDjqd9GTeqXNqTT+u0Gs51uIozNIaaq/kUAbV/Zf56jb2ZOyG8BxZs2GG9wbLi6Q==
+
 webidl-conversions@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npmmirror.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
@@ -7653,30 +7731,30 @@ xtend@^4.0.0:
   resolved "https://registry.npmmirror.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
-xterm-addon-canvas@0.2.0, xterm-addon-canvas@0.4.0:
-  version "0.2.0"
-  resolved "https://registry.npmmirror.com/xterm-addon-canvas/-/xterm-addon-canvas-0.2.0.tgz#ba0080d4071f172f94e8c0b5e6151dd7e386f1a1"
-  integrity sha512-b4tMT05US9Rlqv6R0XZTHsfq8MRKzwxITwpvckuod/l4lokcCokHPbgpYAytOgrzqkzWjYI+Ol8en6cMGf8ncg==
+xterm-addon-canvas@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/xterm-addon-canvas/-/xterm-addon-canvas-0.4.0.tgz#a6ee6a56deb0c495fcef29afe6d94b7119a0f334"
+  integrity sha512-iTC8CdjX9+hGX7jiEuiDMXzHsY/FKJdVnbjep5xjRXNu7RKOk15xuecIkJ7HZORqMVPpr4DGS3jyd9XUoBuxqw==
 
-xterm-addon-fit@0.6.0, xterm-addon-fit@0.7.0:
-  version "0.6.0"
-  resolved "https://registry.npmmirror.com/xterm-addon-fit/-/xterm-addon-fit-0.6.0.tgz#142e1ce181da48763668332593fc440349c88c34"
-  integrity sha512-9/7A+1KEjkFam0yxTaHfuk9LEvvTSBi0PZmEkzJqgafXPEXL9pCMAVV7rB09sX6ATRDXAdBpQhZkhKj7CGvYeg==
+xterm-addon-fit@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/xterm-addon-fit/-/xterm-addon-fit-0.7.0.tgz#b8ade6d96e63b47443862088f6670b49fb752c6a"
+  integrity sha512-tQgHGoHqRTgeROPnvmtEJywLKoC/V9eNs4bLLz7iyJr1aW/QFzRwfd3MGiJ6odJd9xEfxcW36/xRU47JkD5NKQ==
 
-xterm-addon-search@0.10.0, xterm-addon-search@0.12.0:
-  version "0.10.0"
-  resolved "https://registry.npmmirror.com/xterm-addon-search/-/xterm-addon-search-0.10.0.tgz#b6a5e859c0bfd83ad534233f93376640c0e0c652"
-  integrity sha512-l+kjDxNDQbkniU5OUo9BHknxUEPZGM0OFpVpc2sMmrb97S0FKJVJO4wAZPJvSGVJ8ZEG6KuDyzXluvnb08t71Q==
+xterm-addon-search@0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/xterm-addon-search/-/xterm-addon-search-0.12.0.tgz#2ef8f56aecf699a3989223a1260f1e079d7c74e2"
+  integrity sha512-hXAuO7Ts2+Jf9K8mZrUx8IFd7c/Flgks/jyqA1L4reymyfmXtcsd+WDLel8R9Tgy2CLyKABVBP09/Ua/FmXcvg==
 
-xterm-addon-webgl@0.13.0, xterm-addon-webgl@0.15.0:
-  version "0.13.0"
-  resolved "https://registry.npmmirror.com/xterm-addon-webgl/-/xterm-addon-webgl-0.13.0.tgz#b1d42ec454390ad8595aa8c8dde714b98a5eb896"
-  integrity sha512-xL4qBQWUHjFR620/8VHCtrTMVQsnZaAtd1IxFoiKPhC63wKp6b+73a45s97lb34yeo57PoqZhE9Jq5pB++ksPQ==
+xterm-addon-webgl@0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/xterm-addon-webgl/-/xterm-addon-webgl-0.15.0.tgz#c10f93ca619524f5a470eaac44258bab0ae8e3c7"
+  integrity sha512-ZLcqogMFHr4g/YRhcCh3xE8tTklnyut/M+O/XhVsFBRB/YCvYhPdLQ5/AQk54V0wjWAQpa8CF3W8DVR9OqyMCg==
 
-xterm@5.0.0, xterm@5.3.0:
-  version "5.0.0"
-  resolved "https://registry.npmmirror.com/xterm/-/xterm-5.0.0.tgz#0af50509b33d0dc62fde7a4ec17750b8e453cc5c"
-  integrity sha512-tmVsKzZovAYNDIaUinfz+VDclraQpPUnAME+JawosgWRMphInDded/PuY0xmU5dOhyeYZsI0nz5yd8dPYsdLTA==
+xterm@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/xterm/-/xterm-5.3.0.tgz#867daf9cc826f3d45b5377320aabd996cb0fce46"
+  integrity sha512-8QqjlekLUFTrU6x7xck1MsPzPA571K5zNqWm0M0oroYEWVOptZ0+ubQSkQ3uxIEhcIHRujJy6emDWX4A7qyFzg==
 
 y18n@^5.0.5:
   version "5.0.8"

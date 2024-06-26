@@ -39,14 +39,6 @@
     "url": "git@github.com:opensumi/ide-electron.git"
   },
   "license": "MIT",
-  "resolutions": {
-    "requestretry": "6.0.0",
-    "xterm": "5.0.0",
-    "xterm-addon-canvas": "0.2.0",
-    "xterm-addon-fit": "0.6.0",
-    "xterm-addon-search": "0.10.0",
-    "xterm-addon-webgl": "0.13.0"
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,md,html,css,less,json}": "prettier --write",
     "*.{js,jsx,ts,tsx}": "eslint --fix --quiet"
@@ -122,8 +114,6 @@
     "less-loader": "^11.0.0",
     "lint-staged": "^12.3.5",
     "mini-css-extract-plugin": "^2.6.0",
-    "mobx": "^5.9.4",
-    "mobx-react-lite": "^1.3.1",
     "node-fetch": "^2.6.1",
     "node-gyp": "^9.1.0",
     "npm-run": "^5.0.1",
@@ -131,8 +121,8 @@
     "null-loader": "^4.0.1",
     "prettier": "^2.5.1",
     "process": "^0.11.10",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "request": "^2.88.2",
     "rimraf": "^3.0.0",
     "style-loader": "^0.23.1",
@@ -148,5 +138,9 @@
   "peerDependencies": {
     "@opensumi/di": "*",
     "node-gyp": "*"
+  },
+  "dependencies": {
+    "@opensumi/ide-ai-native": "3.1.2",
+    "@opensumi/ide-design": "3.1.2"
   }
 }
