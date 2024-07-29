@@ -5,8 +5,8 @@
   "description": "OpenSumi Desktop",
   "private": true,
   "dependencies": {
-    "@opensumi/vscode-ripgrep": "^1.4.0",
-    "node-pty": "0.10.0",
+    "@opensumi/ripgrep": "^1.4.0",
+    "node-pty": "1.0.0",
     "@parcel/watcher": "2.1.0",
     "spdlog": "0.11.1",
     "vscode-oniguruma": "^1.5.1"
