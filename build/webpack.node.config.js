@@ -48,9 +48,7 @@ module.exports = createConfig({
     },
     ({ context, request }, callback) => {
       if (
-        ['node-pty', '@parcel/watcher', 'spdlog', '@opensumi/vscode-ripgrep', 'vm2', 'keytar', 'vertx'].indexOf(
-          request,
-        ) !== -1
+        ['node-pty', '@parcel/watcher', 'spdlog', '@opensumi/ripgrep', 'vm2', 'keytar', 'vertx'].indexOf(request) !== -1
       ) {
         return callback(null, 'commonjs ' + request);
       }
